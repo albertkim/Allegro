@@ -11,7 +11,18 @@
 |
 */
 
-Route::get('/', function()
-{
+Route::get('/', function(){
 	return View::make('hello');
+});
+
+Route::get('customer', function(){
+	return View::make('customer');
+});
+
+Route::get('clerk', function(){
+	return View::make('clerk');
+});
+
+Route::get('manager', function(){
+	return View::make('manager');
 });
