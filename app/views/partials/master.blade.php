@@ -4,8 +4,10 @@
 		<title>Laravel PHP Framework</title>
 
 		{{ HTML::style( asset('css/bootstrap.min.css')) }}
-		{{ HTML::script('bootstrap.min.js') }}
 		{{ HTML::script('jquery-2.1.1.min.js') }}
+		{{ HTML::script('bootstrap.min.js') }}
+		<!-- Pinterest Jquery plugin: http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html -->
+		{{ HTML::script('pinterest_grid.js') }}
 
 	</head>
   <body>
