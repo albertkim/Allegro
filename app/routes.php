@@ -11,6 +11,8 @@
 |
 */
 
+// Main page routes
+
 Route::get('/', function(){
 	return View::make('hello');
 });
@@ -25,4 +27,15 @@ Route::get('clerk', function(){
 
 Route::get('manager', function(){
 	return View::make('manager');
+});
+
+// Routes used for data requests only
+
+Route::post('/getTopItems', function(){
+	// Return the top items sold of all time
+});
+
+Route::post('/getTopItemsByDate', function(){
+	// Given: date
+	// Return the top items sold on given date
 });

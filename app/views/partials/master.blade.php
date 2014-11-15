@@ -21,7 +21,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="">Allegro</a>
+            <a class="navbar-brand" href="/allegro/public">Allegro</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -50,13 +50,6 @@
         </div><!--/.container-fluid -->
       </nav>
       @show
-
-    	<div class="jumbotron text-center" style="background-color: #338A2E">
-    		<div class="container">
-    			<h1 style="color: #FFFFFF">Welcome to the Allegro Music Store</h1>
-    			<p style="color: #C0C0C0">Your all-in-one location for music purchases</p>
-    		</div>
-    	</div>
 
       <div class="container">
 				@yield('content')
