@@ -109,3 +109,11 @@
 
 <div class="row">
 @stop
+
+@section('scripts')
+<script>
+	$(document).ready(function(){
+		$("#managerMenu").addClass("active");
+	});
+</script>
+@stop

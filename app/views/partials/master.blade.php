@@ -21,13 +21,12 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/allegro/public">Allegro</a>
+            <a class="navbar-brand" href="/Allegro/public">Allegro</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
-              <li><a href="#">Link</a></li>
+              <li><a href="#">About</a></li>
+              <li><a href="#">FAQ</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -42,9 +41,9 @@
               </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="customer">Customer</a></li>
-              <li><a href="clerk">Clerk</a></li>
-              <li><a href="manager">Manager</a></li>
+              <li id="customerMenu"><a href="customer">Customer</a></li>
+              <li id="clerkMenu"><a href="clerk">Clerk</a></li>
+              <li id="managerMenu"><a href="manager">Manager</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -55,4 +54,5 @@
 				@yield('content')
       </div>
   </body>
+  @yield('scripts')
 </html>
