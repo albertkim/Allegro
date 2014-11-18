@@ -15,22 +15,19 @@
 // Main page routes module ----------------------
 // ----------------------------------------------
 
-Route::get('/', function(){
-	return View::make('hello');
-});
+Route::get('/', "HomeController@get");
 
-Route::get('customer', function(){
-	return View::make('customer');
-});
+// Customer business logic
 
-Route::get('clerk', function(){
-	return View::make('clerk');
-});
+Route::get('customer', "CustomerController@get");
 
-Route::get('manager', function(){
-	return View::make('manager');
-});
+// Clerk business logic
+Route::get('clerk', "ClerkController@get");
 
+// Manager business logic
+Route::get('manager', "ManagerController@get");
+
+// Login/registration
 Route::get('login', function(){
 	DB::select();
 
@@ -44,15 +41,8 @@ Route::post('register', function(){
 	
 });
 
-// Routes used for data requests only
+Route::post('/addAlbum', "ManagerController@addAlbum");
 
-Route::post('/getTopItems', function(){
-	// Return the top items sold of all time
-});
+Route::post('/getTopItems', "ManagerController@getTopItems");
 
-// Misc data API
-
-Route::post('/getTopItemsByDate', function(){
-	// Given: date
-	// Return the top items sold on given date
-});
+Route::post('/getTopItemsByDate', "ManagerController@getTopItemsByDate");

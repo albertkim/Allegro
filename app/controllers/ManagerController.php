@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends BaseController {
+class ManagerController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,9 +15,20 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function get()
-	{
-		return View::make('hello');
+	public function get(){
+		return View::make("manager");
+	}
+
+	public function addAlbum(){
+		DB:insert();
+	}
+
+	public function getTopItems(){
+
+	}
+
+	public function getTopItemsByDate(){
+		
 	}
 
 }

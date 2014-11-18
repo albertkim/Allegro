@@ -51,3 +51,11 @@
 </script>
 
 @stop
+
+@section('scripts')
+<script>
+	$(document).ready(function(){
+		$("#customerMenu").addClass("active");
+	});
+</script>
+@stop
