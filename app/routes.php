@@ -11,7 +11,9 @@
 |
 */
 
-// Main page routes
+// ----------------------------------------------
+// Main page routes module ----------------------
+// ----------------------------------------------
 
 Route::get('/', function(){
 	return View::make('hello');
@@ -29,11 +31,26 @@ Route::get('manager', function(){
 	return View::make('manager');
 });
 
+Route::get('login', function(){
+	DB::select();
+
+});
+
+Route::get('register', function(){
+	return View::make('register');
+});
+
+Route::post('register', function(){
+	
+});
+
 // Routes used for data requests only
 
 Route::post('/getTopItems', function(){
 	// Return the top items sold of all time
 });
+
+// Misc data API
 
 Route::post('/getTopItemsByDate', function(){
 	// Given: date

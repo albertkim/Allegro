@@ -102,7 +102,7 @@
 	    <div class="checkbox">
 	      <label><input type="checkbox"> Explicit</label>
 	    </div>
-	    <button type="submit" class="btn btn-primary">Login</button>
+	    <button type="submit" class="btn btn-primary">Add</button>
 	  </form>
 
   </div>
