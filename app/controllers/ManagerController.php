@@ -20,11 +20,18 @@ class ManagerController extends BaseController {
 	}
 
 	public function addAlbum(){
-		DB:insert();
+		DB:insert("INSERT INTO ITEMS VALUES (?,?)", "");
+	}
+
+	public function deleteAlbum(){
+		DB::delete();
 	}
 
 	public function getTopItems(){
-
+		DB::transactioin(function(){
+			DB::select();
+			DB::select();
+		});
 	}
 
 	public function getTopItemsByDate(){

@@ -4,7 +4,7 @@
 
 <div class="jumbotron text-center" style="background-color: black">
 	<div class="container">
-		<h1 style="color: #FFFFFF">Good morning boss</h1>
+		<h1 style="color: #FFFFFF">Dashboard</h1>
 		<p style="color: #C0C0C0">Manage the status of your store here</p>
 	</div>
 </div>

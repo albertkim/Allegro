@@ -18,30 +18,24 @@
 Route::get('/', "HomeController@get");
 
 // Customer business logic
-
 Route::get('customer', "CustomerController@get");
 
 // Clerk business logic
 Route::get('clerk', "ClerkController@get");
 
+// Login/registration business logic
+Route::post('login', "UserController@login");
+
+Route::get('register', "UserController@getRegister");
+
+Route::post('register', "UserController@addUser");
+
 // Manager business logic
 Route::get('manager', "ManagerController@get");
 
-// Login/registration
-Route::get('login', function(){
-	DB::select();
-
-});
-
-Route::get('register', function(){
-	return View::make('register');
-});
-
-Route::post('register', function(){
-	
-});
-
 Route::post('/addAlbum', "ManagerController@addAlbum");
+
+Route::post('deleteAlbum', "ManagerController@deleteAlbum");
 
 Route::post('/getTopItems', "ManagerController@getTopItems");
 
