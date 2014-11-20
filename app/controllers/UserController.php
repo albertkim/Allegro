@@ -16,35 +16,61 @@ class UserController extends BaseController {
 	*/
 
 	public function getRegister(){
+		log::info("GET register page");
 		return View::make("register");
 	}
 
-	public function addUser(email, password){
-		$email = Input::get("email");
-		$pasword = Input::post("password");
-		// compare the password using bcrypt
-		$hashedPassword = $passoword;
-		DB:insert("INSERT INTO USERS (EMAIL, PASSWORD) VALUES (?,?)", array($email, $password));
+	public function addUser(){
+		log::info("Adding user");
+		$username = Input::get("username");
+		$password = Input::get("password");
+		$confirmPassword = Input::get("confirmPassword");
+
+		log::info("Received: ");
+		log::info($username);
+		log::info($password);
+		log::info($confirmPassword);
+
+		if($password != $confirmPassword){
+			log::info("Passwords do not match");
+			return View::make("register", array("message" => "Passwords do not match"));
+		}
+
+		$hashedPassword = Hash::make($password);
+
+		$rowsAffected = DB::insert("INSERT INTO CUSTOMER (USERNAME, PASSWORD) VALUES (?,?)", array($username, $password));
+		if($rowsAffected != null){
+			log::info("User successrfully added");
+			Cookie::make("user", username, 60);
+			return View::make("customer", array("message" => "Thanks for registering"));
+		} else{
+			log::info("User could not be added");
+			return View::make("register", array("message" => "User could not be added"));
+		}
+		
 	}
 
 	public function login(){
-		$email = Input::get("email");
-		$pasword = Input::post("password");
-		// compare the password using bcrypt
-		$hashedPassword = $passoword;
-		$user = DB::select("SELECT FROM USERS EMAIL WHERE EMAIL=?", array($email);
-		if($user != null){
-			if($user.password == $hashedPassword){
+		$username = Input::get("username");
+		$password = Input::post("password");
+
+		$userArray = DB::select("SELECT FROM CUSTOMER USERNAME WHERE USENAME=?", array($username));
+		log::info($user);
+		
+		if(count($userArray) != 0){
+			$user = $userArray[0];
+			$hashedPassword = $user->password;
+			if(Hash::check($password, $hashedPassword)){
 				// set session for 1 hour
-				Cookie::make("user", $user, 60);
-				return View::make("customer", array("user" => $user));
+				Cookie::make("user", $username, 60);
+				return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
 			} else{
 				// password was incorrect
-				return 
+				return View::make("hello", array("message" => "Invalid credentials"));
 			}
 		} else{
 			// user did not exist
-			return
+			return View::make("hello", array("message" => "User does not exist"));
 		}
 	}
 

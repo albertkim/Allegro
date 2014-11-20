@@ -11,6 +11,7 @@
 
 	</head>
   <body>
+  		{{{ isset($message) ? $message : 'Default' }}}
       @section('header')
 			<nav class="navbar navbar-default" role="navigation" style="background-color: white">
         <div class="container-fluid">
@@ -35,7 +36,7 @@
             </ul>
 
 			      <div class="nav navbar-form navbar-right">
-			      	<form role="form" action="/login" method="POST">
+			      	<form role="form" action="login" method="POST">
 				      	<div class="form-group">
 				      		<input id="usernameInput" name="username" type="text" class="form-control" placeholder="Username">
 				      	</div>

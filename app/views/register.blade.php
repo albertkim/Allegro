@@ -3,21 +3,21 @@
 @section('content')
 
 <div class="col-lg-6">
-	<form class="form-group" action="register">
+	<form class="form-group" action="addUser" method="POST">
 		<br>
 		<div class="form-group">
-			<label>Email:</label>
-			<input class="form-control input" placeholder="Email"></input>
+			<label>Username:</label>
+			<input class="form-control input" name="username" placeholder="Username"></input>
 		</div>
 		<div class="form-group">
 			<label>Password:</label>
-			<input class="form-control input" type="password" placeholder="Password"></input>
+			<input class="form-control input" name="password" type="password" placeholder="Password"></input>
 		</div>
 		<div class="form-group">
 			<label>Confirm password:</label>
-			<input class="form-control input" type="password" placeholder="Confirm password"></input>
+			<input class="form-control input" name="confirmPassword" type="password" placeholder="Confirm password"></input>
 		</div>
-		<button id="registerButton" type="submit" class="btn btn-primary">Reigister</button>
+		<button id="registerButton" type="submit" class="btn btn-primary">Register</button>
 	</form>
 </div>
 

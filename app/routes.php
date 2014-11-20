@@ -28,7 +28,7 @@ Route::post('login', "UserController@login");
 
 Route::get('register', "UserController@getRegister");
 
-Route::post('register', "UserController@addUser");
+Route::post('addUser', "UserController@addUser");
 
 // Manager business logic
 Route::get('manager', "ManagerController@get");
