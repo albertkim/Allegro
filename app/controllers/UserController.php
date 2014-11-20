@@ -21,7 +21,7 @@ class UserController extends BaseController {
 	}
 
 	public function addUser(){
-		log::info("Adding user");
+		log::info("POST add user");
 		$username = Input::get("username");
 		$password = Input::get("password");
 		$confirmPassword = Input::get("confirmPassword");
@@ -38,10 +38,10 @@ class UserController extends BaseController {
 
 		$hashedPassword = Hash::make($password);
 
-		$rowsAffected = DB::insert("INSERT INTO CUSTOMER (USERNAME, PASSWORD) VALUES (?,?)", array($username, $password));
+		$rowsAffected = DB::insert("INSERT INTO CUSTOMER (USERNAME, PASSWORD) VALUES (?,?)", array($username, $hashedPassword));
 		if($rowsAffected != null){
-			log::info("User successrfully added");
-			Cookie::make("user", username, 60);
+			log::info("User successfully added");
+			Cookie::make("user", $username, 60);
 			return View::make("customer", array("message" => "Thanks for registering"));
 		} else{
 			log::info("User could not be added");
@@ -51,24 +51,27 @@ class UserController extends BaseController {
 	}
 
 	public function login(){
+		log::info("POST login");
 		$username = Input::get("username");
-		$password = Input::post("password");
+		$password = Input::get("password");
 
-		$userArray = DB::select("SELECT FROM CUSTOMER USERNAME WHERE USENAME=?", array($username));
-		log::info($user);
+		$userArray = DB::select("SELECT * FROM CUSTOMER WHERE USERNAME=?", array($username));
 		
 		if(count($userArray) != 0){
-			$user = $userArray[0];
+			$user = current($userArray);
 			$hashedPassword = $user->password;
 			if(Hash::check($password, $hashedPassword)){
+				log::info("Password correct");
 				// set session for 1 hour
 				Cookie::make("user", $username, 60);
 				return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
 			} else{
+				log::info("Password incorrect");
 				// password was incorrect
 				return View::make("hello", array("message" => "Invalid credentials"));
 			}
 		} else{
+			log::info("User does not exist");
 			// user did not exist
 			return View::make("hello", array("message" => "User does not exist"));
 		}

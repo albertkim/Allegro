@@ -1,6 +1,6 @@
 CREATE TABLE Customer
 (cid INT,
-password VARCHAR(20),
+password VARCHAR(100),
 username CHAR(100),
 address VARCHAR(100),
 phone VARCHAR(20),
