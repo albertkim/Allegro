@@ -12,7 +12,7 @@ CREATE TABLE Item
 (upc INT,
 title VARCHAR(100),
 category CHAR(3),
-company VARCHAR(100),
+company VARCHAR(100),l
 year INT,
 price FLOAT,
 stock INT,

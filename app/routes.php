@@ -33,10 +33,10 @@ Route::post('addUser', "UserController@addUser");
 // Manager business logic
 Route::get('manager', "ManagerController@get");
 
-Route::post('/addAlbum', "ManagerController@addAlbum");
+Route::post('addAlbum', "ManagerController@addAlbum");
 
 Route::post('deleteAlbum', "ManagerController@deleteAlbum");
 
-Route::post('/getTopItems', "ManagerController@getTopItems");
+Route::post('getTopItems', "ManagerController@getTopItems");
 
-Route::post('/getTopItemsByDate', "ManagerController@getTopItemsByDate");
+Route::post('getTopItemsByDate', "ManagerController@getTopItemsByDate");

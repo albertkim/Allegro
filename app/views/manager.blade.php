@@ -8,109 +8,127 @@
 		<p style="color: #C0C0C0">Manage the status of your store here</p>
 	</div>
 </div>
-
-<div class="row">
+	
 	<div class="col-lg-8">
-		<h2>Top selling items:</h2>
-		<br>
-		<table class="table">
-			<tr>
-				<th>UPC</th>
-				<th>Category</th>
-				<th>Price</th>
-				<th>Units</th>
-				<th>Total value</th>
-			</tr>
-			<tr>
-				<td>2244</td>
-				<td>Classical</td>
-				<td>10.50</td>
-				<td>10</td>
-				<td>105.00</td>
-			</tr>
-			<tr>
-				<td>2245</td>
-				<td>Rock</td>
-				<td>5.00</td>
-				<td>15</td>
-				<td>20.00</td>
-			</tr>
-		</table>
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Top selling items:</h2>
+				<br>
+				<table class="table">
+					<tr>
+						<th>UPC</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Units</th>
+						<th>Total value</th>
+					</tr>
+					<tr>
+						<td>2244</td>
+						<td>Classical</td>
+						<td>10.50</td>
+						<td>10</td>
+						<td>105.00</td>
+					</tr>
+					<tr>
+						<td>2245</td>
+						<td>Rock</td>
+						<td>5.00</td>
+						<td>15</td>
+						<td>20.00</td>
+					</tr>
+				</table>
+			</div>
+		</div> <!-- row -->
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h2>Daily Sales Report:</h2>
+				<hr>
+		    <div class="form-group">
+		      <label>Select date:</label>
+		      <input class="form-control" id="date" placeholder="YYYY/MM/DD">
+		    </div>
+		    <button type="submit" class="btn btn-primary">Get report</button>
+				<h3>Items sold:</h3>
+				<table class="table">
+					<tr>
+						<th>UPC</th>
+						<th>Category</th>
+						<th>Price</th>
+						<th>Units</th>
+						<th>Total value</th>
+					</tr>
+					<tr>
+						<td>2244</td>
+						<td>Classical</td>
+						<td>10.50</td>
+						<td>10</td>
+						<td>105.00</td>
+					</tr>
+					<tr>
+						<td>2245</td>
+						<td>Rock</td>
+						<td>5.00</td>
+						<td>15</td>
+						<td>20.00</td>
+					</tr>
+				</table>
+			</div>
+		</div> <!-- row -->
 	</div>
-	<div class="col-lg-4">
-		Something
-	</div>
-</div>
 
-<div class="row">
-
-	<div class="col-lg-8">
-		<h2>Daily Sales Report:</h2>
-		<hr>
-    <div class="form-group">
-      <label>Select date:</label>
-      <input class="form-control" id="date" placeholder="YYYY/MM/DD">
-    </div>
-    <button type="submit" class="btn btn-primary">Get report</button>
-		<h3>Items sold:</h3>
-		<table class="table">
-			<tr>
-				<th>UPC</th>
-				<th>Category</th>
-				<th>Price</th>
-				<th>Units</th>
-				<th>Total value</th>
-			</tr>
-			<tr>
-				<td>2244</td>
-				<td>Classical</td>
-				<td>10.50</td>
-				<td>10</td>
-				<td>105.00</td>
-			</tr>
-			<tr>
-				<td>2245</td>
-				<td>Rock</td>
-				<td>5.00</td>
-				<td>15</td>
-				<td>20.00</td>
-			</tr>
-		</table>
-
-	</div>
-
-	<div class="col-lg-4">
+	<div class="col-lg-4" ng-controller="addAlbumController" ng-init="songs=[]">
 		<h2>Add an album</h2>
 		<hr>
-	  <form>
+	  <!-- <form> -->
 	    <div class="form-group">
-	      <label>Album Name:</label>
-	      <input class="form-control" id="albumName" placeholder="XYZ">
+	      <label>Album Title:</label>
+	      <input class="form-control" ng-model="title" name="title" id="title" placeholder="Baby">
 	    </div>
 	    <div class="form-group">
-	      <label>Artist Name</label>
-	      <input class="form-control" id="artistName" placeholder="Justin Bieber">
+	      <label>Genre</label>
+	      <input class="form-control" ng-model="category" name="category" id="category" placeholder="Heavy Metal">
 	    </div>
-	    <div>
-	    	Songs:
+	    <div class="form-group">
+	      <label>Year</label>
+	      <input class="form-control" ng-model="year" name="year" id="year" placeholder="2020">
+	    </div>
+	    <div class="form-group">
+	      <label>Company</label>
+	      <input class="form-control" ng-model="company" name="company" id="company" placeholder="MouseVille">
+	    </div>
+	    <div class="form-group">
+	      <label>Price</label>
+	      <input class="form-control" ng-model="price" name="price" id="price" placeholder="$30">
+	    </div>
+	    <div class="form-group">
+	      <label>Stock</label>
+	      <input class="form-control" ng-model="stock" name="stock" id="stock" placeholder="5">
+	    </div>
+
+	    <div ng-model="songs">
+	    	<div ng-repeat="x in songs">
+	    		@{{ x.songName + ": " + x.artistName }}
+	    	</div>
 	    </div>
 	    <hr>
 	    <div class="form-group">
 	      <label>Song Name</label>
-	      <input class="form-control" id="songName" placeholder="Baby">
+	      <input class="form-control" ng-model="songName" id="songName" placeholder="Baby">
 	    </div>
-	    <div class="checkbox">
-	      <label><input type="checkbox"> Explicit</label>
+	    <div class="form-group">
+	      <label>Artist Name</label>
+	      <input class="form-control" ng-model="artistName" id="artistName" placeholder="Justin Bieber">
 	    </div>
-	    <button type="submit" class="btn btn-primary">Add</button>
-	  </form>
-
+	    <button type="submit" id="addAlbum" class="btn btn-primary" ng-click="addSong()">Add Song</button>
+	    <button type="submit" id="addAlbum" class="btn btn-primary" ng-click="addAlbum()">Submit Album</button>
+	  <!-- </form> -->
   </div>
 
-<div class="row">
 @stop
 
 @section('scripts')
+<script src="js/manager.js"></script>
 <script>
 	$(document).ready(function(){
 		$("#managerMenu").addClass("active");

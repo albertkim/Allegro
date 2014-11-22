@@ -20,7 +20,19 @@ class ManagerController extends BaseController {
 	}
 
 	public function addAlbum(){
-		DB:insert("INSERT INTO ITEMS VALUES (?,?)", "");
+		$title = Input::get("title");
+		$category = Input::get("categoryu");
+		$year = Input::get("year");
+		$company = Input::get("company");
+		$price = Input::get("price");
+		$stock = Input::get("stock");
+
+		$songNames = Input::get("songs");
+
+		DB::transaction(function(){
+			DB:insert("INSERT INTO ITEMS (TITLE, CATEGORY, COMPANY, YEAR, PRICE) VALUES (?,?)", array($title, $category, $company, $year, $price));
+			
+		});
 	}
 
 	public function deleteAlbum(){
@@ -28,7 +40,7 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItems(){
-		DB::transactioin(function(){
+		DB::transaction(function(){
 			DB::select();
 			DB::select();
 		});
