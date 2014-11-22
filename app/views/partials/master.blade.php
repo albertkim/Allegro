@@ -8,6 +8,7 @@
 		{{ HTML::script('bootstrap.min.js') }}
 		{{ HTML::script('handlebars.js') }}
 		{{ HTML::script('angular.min.js') }}
+		{{ HTML::script('underscore.js') }}
 		<!-- Pinterest Jquery plugin: http://www.jqueryscript.net/layout/Simple-jQuery-Plugin-To-Create-Pinterest-Style-Grid-Layout-Pinterest-Grid.html -->
 		{{ HTML::script('pinterest_grid.js') }}
 

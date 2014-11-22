@@ -20,19 +20,15 @@ class ManagerController extends BaseController {
 	}
 
 	public function addAlbum(){
-		$title = Input::get("title");
-		$category = Input::get("categoryu");
-		$year = Input::get("year");
-		$company = Input::get("company");
-		$price = Input::get("price");
-		$stock = Input::get("stock");
+		$album = file_get_contents("php://input");
+		$album = json_decode($album, true);
 
-		$songNames = Input::get("songs");
-
-		DB::transaction(function(){
-			DB:insert("INSERT INTO ITEMS (TITLE, CATEGORY, COMPANY, YEAR, PRICE) VALUES (?,?)", array($title, $category, $company, $year, $price));
-			
+		DB::transaction(function() use ($album){
+			DB::insert("INSERT INTO ITEM (TITLE, CATEGORY, COMPANY, YEAR, PRICE) VALUES (?,?,?,?,?)", 
+				array($album["title"], $album["category"], $album["company"], $album["year"], $album["price"]));
 		});
+
+		return($album);
 	}
 
 	public function deleteAlbum(){

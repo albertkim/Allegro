@@ -11,8 +11,8 @@ PRIMARY KEY (cid)
 CREATE TABLE Item
 (upc INT,
 title VARCHAR(100),
-category CHAR(3),
-company VARCHAR(100),l
+category CHAR(100),
+company VARCHAR(100),
 year INT,
 price FLOAT,
 stock INT,
