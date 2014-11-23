@@ -1,9 +1,8 @@
 @extends('partials.master');
 
 @section('scripts')
+<script src="js/customer.js"></script>
 <script>
-	$(document).ready(function(){
-		$("#clerkMenu").addClass("active");
-	});
+	$("#clerkMenu").addClass("active");
 </script>
 @stop

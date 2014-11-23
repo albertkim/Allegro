@@ -34,10 +34,20 @@
               <li><a href="manager">Manager</a></li>
             </ul>
 
+            @if(isset($_COOKIE["user"]))
+            {{ $_COOKIE["user"] }}
+			      <div class="nav navbar-form navbar-right">
+			      	<form role="form" action="logout" method="POST">
+				      	<div class="form-group" hidden>
+				      		<input id="usernameInput" name="username" type="text" class="form-control" value="{{ $_COOKIE['user'] }}">
+				      	</div>
+				      	<button id="logoutButton" type="submit" class="btn btn-default">Logout</button>
+			      	</form>
+			      </div>
+			      @else
             <ul class="nav navbar-nav navbar-right">
               <li><a id="registerButton" href="register" class="btn btn-default">Register</a></li>
             </ul>
-
 			      <div class="nav navbar-form navbar-right">
 			      	<form role="form" action="login" method="POST">
 				      	<div class="form-group">
@@ -46,9 +56,10 @@
 				      	<div class="form-group">
 				      		<input id="passwordInput" name="password" type="password" class="form-control" placeholder="Password">
 				      	</div>
-				      	<button id="loginButton" type="submit" class="btn btn-default">button</button>
+				      	<button id="loginButton" type="submit" class="btn btn-default">Login</button>
 			      	</form>
 			      </div>	<!-- navbar form -->
+			      @endif
 
           </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
@@ -59,5 +70,8 @@
 				@yield('content')
       </div>
   </body>
+  <script>
+  	var app = angular.module("Allegro", []);
+  	</script>
   @yield('scripts')
 </html>

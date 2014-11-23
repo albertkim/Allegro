@@ -86,6 +86,10 @@
 	      <input class="form-control" ng-model="title" name="title" id="title" placeholder="Baby">
 	    </div>
 	    <div class="form-group">
+	      <label>Artist Name</label>
+	      <input class="form-control" ng-model="artist" id="artist" placeholder="Justin Bieber">
+	    </div>
+	    <div class="form-group">
 	      <label>Genre</label>
 	      <input class="form-control" ng-model="category" name="category" id="category" placeholder="Heavy Metal">
 	    </div>
@@ -105,13 +109,11 @@
 	      <label>Stock</label>
 	      <input class="form-control" ng-model="stock" name="stock" id="stock" placeholder="5">
 	    </div>
-
 	    <div id="songContainer" class="form-group col-lg-12">
 	    	<label>Songs:</label>
 	    	<div class="song" ng-model="song" ng-repeat="x in songs">
 	    		<div class="col-lg-8">
-		    		<p>@{{ "Song name: " + x.songName}}</p>
-		    		<p>@{{ "Artist name: " + x.artistName }}</p>
+		    		<p>@{{ "Song title: " + x.songTitle}}</p>
 	    		</div>
 	    		<div class="col-lg-4">
 	    			<button class="btn btn-secondary" ng-click="deleteSong($index)">Delete</button>
@@ -122,11 +124,7 @@
 
 	    <div class="form-group">
 	      <label>Song Name</label>
-	      <input class="form-control" ng-model="songName" id="songName" placeholder="Baby">
-	    </div>
-	    <div class="form-group">
-	      <label>Artist Name</label>
-	      <input class="form-control" ng-model="artistName" id="artistName" placeholder="Justin Bieber">
+	      <input class="form-control" ng-model="songTitle" id="songTitle" placeholder="Baby">
 	    </div>
 	    <button id="addAlbum" class="btn btn-primary" ng-click="addSong()">Add Song</button>
 	    <button id="addAlbum" class="btn btn-primary pull-right" ng-click="addAlbum()">Submit Album</button>

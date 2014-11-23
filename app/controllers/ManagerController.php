@@ -24,11 +24,37 @@ class ManagerController extends BaseController {
 		$album = json_decode($album, true);
 
 		DB::transaction(function() use ($album){
-			DB::insert("INSERT INTO ITEM (TITLE, CATEGORY, COMPANY, YEAR, PRICE) VALUES (?,?,?,?,?)", 
-				array($album["title"], $album["category"], $album["company"], $album["year"], $album["price"]));
+
+			$id = DB::table("item")->insertGetId(
+				array(
+					"title" => $album["title"],
+					"category" => $album["category"],
+					"company" => $album["company"],
+					"year" => $album["year"],
+					"price" => $album["price"]
+				)
+			);
+
+			// add artist relation to album
+			DB::table("leadSinger")->insert(
+				array(
+					"upc" => $id,
+					"name" => $album["artist"]
+				)
+			);
+
+			// add each song relation to album
+			foreach($album["songs"] as $song){
+				DB::table("hasSong")->insert(
+					array(
+						"upc" => $id,
+						"title" => $song["title"]
+					)
+				);
+			}
 		});
 
-		return($album);
+		return("Album successfully added");
 	}
 
 	public function deleteAlbum(){

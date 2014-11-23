@@ -15,8 +15,8 @@ class CustomerController extends BaseController {
 	|
 	*/
 
-	public function get()
-	{
+	public function get(){
+		log::info("Current user: " + Cookie::get("user"));
 		return View::make("customer");
 	}
 

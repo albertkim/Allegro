@@ -1,12 +1,8 @@
-// This file will be loaded alongside the Manager page
-var app = angular.module("Allegro", []);
-
 app.controller("addAlbumController", function($scope, $http){
 	$scope.addSong = function(){
 		// don't allow duplicate songs
 		$scope.songs.push({
-			songName: $scope.songName,
-			artistName: $scope.artistName
+			title: $scope.songTitle,
 		});
 	},
 
@@ -14,6 +10,7 @@ app.controller("addAlbumController", function($scope, $http){
 		// make album object
 		var album = {
 			title: $scope.title,
+			artist: $scope.artist,
 			category: $scope.category,
 			year: $scope.year,
 			company: $scope.company,

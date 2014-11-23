@@ -1,5 +1,5 @@
 CREATE TABLE Customer
-(cid INT,
+(cid INT NOT NULL AUTO_INCREMENT,
 password VARCHAR(100),
 username CHAR(100),
 address VARCHAR(100),
@@ -9,7 +9,7 @@ PRIMARY KEY (cid)
 );
 
 CREATE TABLE Item
-(upc INT,
+(upc INT NOT NULL AUTO_INCREMENT,
 title VARCHAR(100),
 category CHAR(100),
 company VARCHAR(100),
@@ -20,7 +20,7 @@ PRIMARY KEY (upc)
 );
 
 CREATE TABLE LeadSinger 
-(upc INT NOT NULL,
+(upc INT NOT NULL AUTO_INCREMENT,
 name CHAR(100),
 PRIMARY KEY (upc, name)
 );
@@ -32,7 +32,7 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 CREATE TABLE HasSong
-(upc INT NOT NULL,
+(upc INT NOT NULL AUTO_INCREMENT,
 title VARCHAR(100),
 PRIMARY KEY (upc,title)
 );
@@ -44,7 +44,7 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 CREATE TABLE Orders (
-receiptId INT,
+receiptId INT AUTO_INCREMENT,
 date DATE,
 cid INT NOT NULL,
 card_num INT,
@@ -70,14 +70,14 @@ ADD FOREIGN KEY (upc)
 REFERENCES Item(upc);
 
 CREATE TABLE  Return_Back
-(retid INT,
+(retid INT NOT NULL AUTO_INCREMENT,
 date DATE,
 receptId INT,
 PRIMARY KEY(retid)
 );
 
 CREATE TABLE ReturnItem
-(retid INT NOT NULL,
+(retid INT NOT NULL AUTO_INCREMENT,
 upc INT NOT NULL,
 quantity INT,
 PRIMARY KEY (retid,upc)

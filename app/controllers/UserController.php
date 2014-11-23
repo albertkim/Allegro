@@ -64,6 +64,7 @@ class UserController extends BaseController {
 				log::info("Password correct");
 				// set session for 1 hour
 				Cookie::make("user", $username, 60);
+				log::info("Cookie set for username: " + $username);
 				return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
 			} else{
 				log::info("Password incorrect");
@@ -75,6 +76,11 @@ class UserController extends BaseController {
 			// user did not exist
 			return View::make("hello", array("message" => "User does not exist"));
 		}
+	}
+
+	public function logout(){
+		log::info("POST logout");
+		Cookie::forget("user");
 	}
 
 }
