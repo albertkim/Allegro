@@ -27,8 +27,17 @@ class CustomerController extends BaseController {
 			$songs = DB::table("hasSong")->where("upc", $id)->get();
 
 			// if exists
-			$album->leadSinger = $leadSinger->name;
-			$album->songs = $songs;
+			if(isset($leadSinger->name)){
+				$album->leadSinger = $leadSinger->name;
+			} else{
+				$album->leadSinger = "None";
+			}
+
+			if(isset($songs)){
+				$album->songs = $songs;
+			} else{
+				$album->songs = array();
+			}
 		}
 		
 		return View::make("customer", array(
