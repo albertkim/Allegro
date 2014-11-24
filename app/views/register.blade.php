@@ -17,6 +17,18 @@
 			<label>Confirm password:</label>
 			<input class="form-control input" name="confirmPassword" type="password" placeholder="Confirm password"></input>
 		</div>
+		<div class="form-group">
+			<label>Name:</label>
+			<input class="form-control input" name="name" placeholder="BillyBob"></input>
+		</div>
+		<div class="form-group">
+			<label>Address:</label>
+			<input class="form-control input" name="address" placeholder="911 Main Street"></input>
+		</div>
+		<div class="form-group">
+			<label>Phone Number:</label>
+			<input class="form-control input" name="phoneNumber" placeholder="6043334444"></input>
+		</div>
 		<button id="registerButton" type="submit" class="btn btn-primary">Register</button>
 	</form>
 </div>
