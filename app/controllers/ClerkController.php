@@ -20,9 +20,8 @@ class ClerkController extends BaseController {
 		return View::make("clerk");
 	}
 
-	public function checkAlbumDate(int receiptId) 
+	public function checkAlbumDate() 
 	{
-		// enter receiptID and if true, check refund table if already returned, if false, then refund item
 		
 	}
 
