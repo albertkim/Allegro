@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>Laravel PHP Framework</title>
+		<title>CPSC 304 - Allegro Music Store!</title>
 
 		{{ HTML::style( asset('css/bootstrap.min.css')) }}
 		{{ HTML::script('jquery-2.1.1.min.js') }}
