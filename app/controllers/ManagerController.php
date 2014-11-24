@@ -31,6 +31,7 @@ class ManagerController extends BaseController {
 					"category" => $album["category"],
 					"company" => $album["company"],
 					"year" => $album["year"],
+					"stock" => $album["stock"],
 					"price" => $album["price"]
 				)
 			);
