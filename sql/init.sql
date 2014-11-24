@@ -2,6 +2,7 @@ CREATE TABLE Customer
 (cid INT NOT NULL AUTO_INCREMENT,
 password VARCHAR(100),
 username CHAR(100),
+name CHAR(100),
 address VARCHAR(100),
 phone VARCHAR(20),
 UNIQUE(username),

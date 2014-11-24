@@ -25,11 +25,18 @@ class UserController extends BaseController {
 		$username = Input::get("username");
 		$password = Input::get("password");
 		$confirmPassword = Input::get("confirmPassword");
+		$name = Input::get("name");
+		$address = Input::get("address");
+		$phone_number = Input::get("phoneNumber");
+		
 
 		log::info("Received: ");
 		log::info($username);
 		log::info($password);
 		log::info($confirmPassword);
+		log::info($name);
+		log::info($address);
+		log::info($phone_number);
 
 		if($password != $confirmPassword){
 			log::info("Passwords do not match");
@@ -38,7 +45,7 @@ class UserController extends BaseController {
 
 		$hashedPassword = Hash::make($password);
 
-		$rowsAffected = DB::insert("INSERT INTO CUSTOMER (USERNAME, PASSWORD) VALUES (?,?)", array($username, $hashedPassword));
+		$rowsAffected = DB::insert("INSERT INTO CUSTOMER (USERNAME, PASSWORD, NAME, ADDRESS, PHONE) VALUES (?,?,?,?,?)", array($username, $hashedPassword, $name, $address, $phone_number));
 		if($rowsAffected != null){
 			log::info("User successfully added");
 			Cookie::make("user", $username, 60);
