@@ -23,6 +23,8 @@ Route::get('customer', "CustomerController@get");
 // Clerk business logic
 Route::get('clerk', "ClerkController@get");
 
+Route::post('checkRefundDate', 'ClerkController@checkAlbumDate')
+
 // Login/registration business logic
 Route::post('login', "UserController@login");
 
