@@ -51,7 +51,7 @@ return array(
 			'host'      => 'localhost',
 			'database'  => 'allegro',
 			'username'  => 'root',
-			'password'  => 'password',
+			'password'  => 'root',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',

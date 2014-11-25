@@ -9,7 +9,7 @@
 	</div>
 </div>
 
-<div class="col-lg-4" ng-controller="checkRefundDateController" ng-init="">
+<div class="col-lg-4" ng-controller="checkRefundController" ng-init="">
 		<div class="row">
 			<div class="col-lg-12">
 				<h2>Refund Items</h2>
@@ -20,10 +20,21 @@
 	      <input class="form-control" ng-model="receiptId" name="receiptId" id="receiptId" placeholder="000000">
 	      </div>
 
-	      <button id="checkRefundDateController" class="btn btn-primary" ng-click="checkReceipt()">Refund Item</button>
+	      <button id="checkRefundController" class="btn btn-primary" ng-click="checkRefund()">Refund Item</button>
 	    
-			</div>
-		</div>
+	    @if(Session::has('refundedMsg'))
+	    	<div class = "alert alert-info">{{ Session::get('refundedMsg')}}</div>
+	    @endif
+
+	    @if(Session::has('daysMsg'))
+	    	<div class = "alert alert-info">{{ Session::get('daysMsg')}}</div>
+	    @endif
+
+	     @if(Session::has('receiptMsg'))
+	    	<div class = "alert alert-info">{{ Session::get('receiptMsg')}}</div>
+	    @endif
+
+
 </div>
 
 @stop
