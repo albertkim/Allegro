@@ -28,6 +28,8 @@ Route::post('checkRefund', "ClerkController@checkRefund");
 // Login/registration business logic
 Route::post('login', "UserController@login");
 
+Route::post('logout', "UserController@logout");
+
 Route::get('register', "UserController@getRegister");
 
 Route::post('addUser', "UserController@addUser");

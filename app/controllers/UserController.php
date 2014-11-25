@@ -88,6 +88,7 @@ class UserController extends BaseController {
 	public function logout(){
 		log::info("POST logout");
 		Cookie::forget("user");
+		return View::make("hello", array("message" => "Logged out"));
 	}
 
 }
