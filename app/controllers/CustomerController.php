@@ -45,4 +45,86 @@ class CustomerController extends BaseController {
 		));
 	}
 
+	public function searchItem(){
+
+		// only category
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('category', $category)
+								->get();
+
+		});
+
+		//only title
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('title', $title)
+								->get();
+		});
+
+		//only leading singer
+
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+
+			$upc = var_dump($singer->upc);
+
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->get();
+		});
+
+		// category and title
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('title', $title)
+								->where('category', $category)
+								->get();
+		});
+
+		// category and singer
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('category', $category)
+								->get();
+		});
+
+		// title and singer
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+
+					$upc = var_dump($singer->upc);
+
+
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->where('title', $title)
+								->get();
+		});
+
+		// category, title, and singer
+
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+
+					$upc = var_dump($singer->upc);
+
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->where('title', $title)
+								->where('category', $category)
+								->get();
+		});
+	}
+
 }
