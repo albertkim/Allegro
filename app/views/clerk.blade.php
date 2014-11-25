@@ -4,8 +4,8 @@
 
 <div class="jumbotron text-center" style="background-color: black">
 	<div class="container">
-		<h1 style="color: #FFFFFF">Dashboard</h1>
-		<p style="color: #C0C0C0">Manage refunds of items here</p>
+		<h1 style="color: #FFFFFF">Not satisfied?</h1>
+		<p style="color: #C0C0C0">No problem! Manage refunds of items here.</p>
 	</div>
 </div>
 
@@ -22,23 +22,40 @@
 
 	      <button id="checkRefundController" class="btn btn-primary" ng-click="checkRefund()">Refund Item</button>
 	    
-	    @if(Session::has('refundedMsg'))
-	    	<div class = "alert alert-info">{{ Session::get('refundedMsg')}}</div>
-	    @endif
+		<br>
+		<br>
 
-	    @if(Session::has('daysMsg'))
-	    	<div class = "alert alert-info">{{ Session::get('daysMsg')}}</div>
-	    @endif
+	    {{Form::open(array('action' => 'ClerkController@checkRefund')) }}
 
-	     @if(Session::has('receiptMsg'))
-	    	<div class = "alert alert-info">{{ Session::get('receiptMsg')}}</div>
-	    @endif
+	    {{Form::label('label_name', 'Receipt Id:')}}
+
+	    <br>
+
+	    {{Form::text('receipt_id', '000000')}}
+
+	   	<br>
+	    <br>
+
+	   @if ($message = Session::get('message'))
+<div class="alert alert-success alert-block">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<h4>Success</h4>
+	{{ $message }}
+</div>
+@endif
+
+	    {{Form::submit('Refund')}}
+
+	    {{ Form::close()}}
+	   
+
 
 
 </div>
 
 @stop
 
+@section('scripts')
 <script src="js/customer.js"></script>
 <script>
 	$("#clerkMenu").addClass("active");
