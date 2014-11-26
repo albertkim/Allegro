@@ -31,14 +31,14 @@ class ClerkController extends BaseController {
 		//verify the receipt is valid
 
 		$query = DB::table('orders')
-						->where('receiptId', $refundInfo['receiptId'])
+						->where('id', $refundInfo['receiptId'])
 						->get();		
 
 			// verify it date was not more than 15 days ago
 			if(count($query) > 0){
 		
 				$query2 = DB::table('orders')
-								->where('receiptId', $refundInfo["receiptId"])
+								->where('id', $refundInfo["receiptId"])
 								->whereBetween('date', array(Carbon::now()->subdays(15), Carbon::now()))
 								->get();
 
@@ -56,9 +56,8 @@ class ClerkController extends BaseController {
 
 						$timestamp = date('Y-m-d');
 
-						DB::table('return_back')->insert(
+						DB::table('return_back')->insertGetId(
 							array(
-								'retid' => '2',
 								'date' => $timestamp,
 								'receiptId' =>  $refundInfo["receiptId"]
 								)
@@ -74,9 +73,8 @@ class ClerkController extends BaseController {
 							$upc = $purchase[0]->upc;
 
 							// add to returnitem table
-							DB::table('returnitem')->insert(
+							DB::table('returnitem')->insertGetId(
 								array(
-									'retid' => '2',
 									'upc' => $upc,
 									'quantity' => $qty
 									)
@@ -87,11 +85,11 @@ class ClerkController extends BaseController {
 									->where('upc', $upc)
 									->update(array('stock' => 'stock' + $qty));
 
-						return View::make("clerk", array("message" => "Refund is successful."));
+						return View::make("clerk", array("message" => "Refund is successful. Thank you."));
 
 					}
 					else{
-						return View::make("clerk", array("message" => "Item already has been refunded!"));
+						return View::make("clerk", array("message" => "Item has already been refunded!"));
 						}
 					
 				}
@@ -100,7 +98,7 @@ class ClerkController extends BaseController {
 					}
 			}
 			else{
-				return View::make("clerk", array("message" => "There is no purchase with this receipt Id."));
+				return View::make("clerk", array("message" => "There is no purchase with this Receipt Id. Please try again."));
 			}
 		
 	}
