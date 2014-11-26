@@ -28,6 +28,7 @@ class ManagerController extends BaseController {
 			$id = DB::table("item")->insertGetId(
 				array(
 					"title" => $album["title"],
+					"type" => $album["type"],
 					"category" => $album["category"],
 					"company" => $album["company"],
 					"year" => $album["year"],
@@ -71,12 +72,9 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItems(){
-		
-		DB::transaction(function(){
-			DB::select();
-			DB::select();
-		});
-		
+		$topItems = DB::select("SELECT I.UPC, SUM(QUANTITY) FROM PURCHASEITEM P, ITEMS I, GROUP BY I.UPC ORDER BY SUM(QUANTITY) DESC");
+
+		return json_encode($topItems);
 	}
 
 	public function getTopItemsByDate(){

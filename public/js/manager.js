@@ -1,3 +1,5 @@
+$("#cart").hide();
+
 app.controller("addAlbumController", function($scope, $http){
 	$scope.addSong = function(){
 		// don't allow duplicate songs
@@ -26,11 +28,12 @@ app.controller("addAlbumController", function($scope, $http){
 		var album = {
 			title: $scope.title,
 			artist: $scope.artist,
+			type: "CD",
 			category: $scope.category,
-			year: $scope.year,
+			year: Number($scope.year),
 			company: $scope.company,
-			price: $scope.price,
-			stock: $scope.stock,
+			price: Number($scope.price),
+			stock: Number($scope.stock),
 			songs: $scope.songs
 		};
 
@@ -39,9 +42,9 @@ app.controller("addAlbumController", function($scope, $http){
 		// send the album object to server
 		$http.post("addAlbum", album).success(function(response){
 			console.log(response);
-			setMessage(response);
+			setMessage("Album successfully added");
 		}).error(function(response){
-			setMessage(response);
+			setMessage("Error adding album");
 		});
 	},
 
@@ -102,3 +105,14 @@ function isNormalInteger(str) {
     var n = ~~Number(str);
     return String(n) === str && n >= 0;
 }
+
+app.controller("topItemsController", function($scope, $http){
+	var init = function(){
+		$http.get("getTopItems").success(function(response){
+			console.log(response);
+			$scope.topItems = response;
+		});
+	};
+
+	init();
+});

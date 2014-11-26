@@ -14,19 +14,10 @@
 			<div class="col-lg-12">
 				<h2>Top selling items:</h2>
 				<br>
-			<form class="form-group" action="getTopItemsByDate" method="POST">
-				<div class="form-group">
-		      		<label>Select date:</label>
-		      		<input class="form-control input" name="date" placeholder="yyyy/mm/dd"></input>
-		    	</div>
-		    	<div class="form-group">
-		      		<label>Show:</label>
-		      		<input class="form-control input" name="number" placeholder="10"></input>
-		    	</div>
-		    	<button id="getTopSellingItemsButton" type="submit" class="btn btn-primary">Get Top Selling Items</button><br>
-		    </form>
-				<table class="table">
-					
+				<table class="table" ng-controller="topItemsController" ng-init="topItems=[]">
+					<tr ng-repeat="item in topItems">
+						<td>@{{ item }}</td>
+					</tr>
 				</table>
 			</div>
 		</div> <!-- row -->
