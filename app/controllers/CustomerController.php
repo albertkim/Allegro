@@ -180,7 +180,7 @@ class CustomerController extends BaseController {
 				"date" => date('Y/m/d H:i:s'),
 				"card_num" => $order["card_num"],
 				"expiryDate" => DateTime::createFromFormat('Y-m-d', $order["expiryDate"]),
-				"deliveredDate" => DateTime::createFromFormat('Y-m-d', $order["deliveredDate"])
+				"expectedDate" => date('Y-m-d', strtotime(date('Y/m/d H:i:s'). ' + 1 weeks'))
 			));
 
 			foreach($order["items"] as $item){

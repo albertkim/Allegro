@@ -54,7 +54,7 @@ CREATE TABLE Orders (
 id INT NOT NULL AUTO_INCREMENT,
 date DATE,
 cid INT NOT NULL,
-card_num INT,
+card_num BIGINT,
 expiryDate DATE,
 expectedDate DATE,
 deliveredDate DATE,

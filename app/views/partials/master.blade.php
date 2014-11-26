@@ -21,12 +21,7 @@
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: white">
 
-    <div id="popup" hidden>
-    	<div class="container" style="padding-top: 50px">
-    		<h4 id="message"></h4>
-    		<button id="closePopup" class="btn btn-primary" style="position: absolute; bottom: 10px; right: 20px">Close</button>
-    	</div>
-    </div>
+    @include("partials/popup")
 
       <div class="container-fluid">
         <div class="navbar-header">

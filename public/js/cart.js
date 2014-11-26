@@ -36,6 +36,26 @@ app.controller("itemsController", function($scope, $http, cartItems){
 app.controller("cartController", function($scope, $http, cartItems){
 
 	$scope.buy = function(){
+		$("#purchasePopup").show();
+	};
+
+	var init = function(){
+		$scope.cartItems = cartItems;
+		// get list of previously purchased items from user
+		$http.get("getPurchasedItems").success(function(response){
+			$scope.purchasedItems = response;
+		});
+	};
+
+	init();
+
+});
+
+app.controller("purchaseController", function($scope, $http, cartItems){
+
+	$scope.buy = function(){
+
+		$("#purchasePopup").hide();
 
 		console.log(cartItems);
 
@@ -46,9 +66,8 @@ app.controller("cartController", function($scope, $http, cartItems){
 
 		// create the order object
 		var order = {
-			card_num: "1234",
-			expiryDate: "2014-09-27",
-			deliveredDate: "2014-09-30",
+			card_num: Number($scope.cardnum),
+			expiryDate: $scope.expiryDate,
 			items: cartItems
 		};
 
@@ -62,15 +81,5 @@ app.controller("cartController", function($scope, $http, cartItems){
 			setMessage(response);
 		});
 	};
-
-	var init = function(){
-		$scope.cartItems = cartItems;
-		// get list of previously purchased items from user
-		$http.get("getPurchasedItems").success(function(response){
-			$scope.purchasedItems = response;
-		});
-	};
-
-	init();
 
 });
