@@ -78,6 +78,9 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItemsByDate(){
+		log::info("POST getTopItemsByDate");
+		$date = Input::get("date");
+		$number = Input::get("number");
 		
 	}
 
