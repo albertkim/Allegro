@@ -13,7 +13,7 @@
 	<h2>Refund Items</h2>
   <div class="form-group">
     <label>Receipt Id:</label>
-    <input class="form-control" ng-model="receiptId" name="receiptId" id="receiptId" placeholder="000000">
+    <input class="form-control" name="receiptId" id="receiptId" placeholder="000000">
   </div>
 	<button type="submit" class="btn btn-primary">Refund Item</button>
 </form>

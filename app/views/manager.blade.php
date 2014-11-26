@@ -115,7 +115,7 @@
 
 	    <div class="form-group">
 	      <label>Song Name</label>
-	      <input class="form-control" ng-model="songTitle" id="songTitle" placeholder="Baby">
+	      <input id="songInput" class="form-control" ng-model="songTitle" id="songTitle" placeholder="Baby">
 	    </div>
 	    <button id="addAlbum" class="btn btn-primary" ng-click="addSong()">Add Song</button>
 	    <button id="addAlbum" class="btn btn-primary pull-right" ng-click="addAlbum()">Submit Album</button>
