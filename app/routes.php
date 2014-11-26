@@ -21,6 +21,8 @@ Route::get('customer', "CustomerController@get");
 
 Route::get('getItems', "CustomerController@getItems");
 
+Route::get('getPurchasedItems', "CustomerController@getPurchasedItems");
+
 Route::post('searchItem', "CustomerController@searchItem");
 
 Route::post('buyItems', "CustomerController@buyItems");

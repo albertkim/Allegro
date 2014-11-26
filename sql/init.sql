@@ -76,6 +76,10 @@ ALTER TABLE PurchaseItem
 ADD FOREIGN KEY (upc)
 REFERENCES Item(upc);
 
+ALTER TABLE PurchaseItem
+ADD FOREIGN KEY (receiptId)
+REFERENCES Orders(id);
+
 CREATE TABLE  Return_Back
 (retid INT NOT NULL AUTO_INCREMENT,
 date DATE,

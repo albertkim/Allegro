@@ -56,6 +56,11 @@ app.controller("cartController", function($scope, $http, cartItems){
 
 	var init = function(){
 		$scope.cartItems = cartItems;
+		// get list of previously purchased items from user
+		$http.get("getPurchasedItems").success(function(response){
+			console.log(response);
+			$scope.purchasedItems = response;
+		});
 	};
 
 	init();

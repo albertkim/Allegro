@@ -63,6 +63,27 @@ class CustomerController extends BaseController {
 		return json_encode($albums);
 	}
 
+	public function getPurchasedItems(){
+		$purchases = array();
+		$purchases = DB::transaction(function() use ($purchases){
+			$orders = DB::table("Orders")->where("cid", Auth::user()->id)->get();
+			foreach($orders as $order){
+				$orderPurchases = DB::table("PurchaseItem")->where("receiptId", $order->id)->get();
+				$purchases = array_merge($purchases, $orderPurchases);
+			}
+			return $purchases;
+		});
+
+		foreach($purchases as $purchase){
+			$title = DB::table("Item")->where("upc", $purchase->upc)->pluck("title");
+			// add title to $purchase object
+			$purchase->title = $title;
+		}
+
+		$purchases = json_encode($purchases);
+		return $purchases;
+	}
+
 	public function searchItem() {
 
 

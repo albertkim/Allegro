@@ -56,10 +56,19 @@
 			      	<hr>
 			      	<div ng-model="cartItem" ng-repeat="item in cartItems">
 			      		<p>@{{ "Album: " + item.title }}</p>
-			      		<p>@{{ "Quantity: " + item.quantity}}
+			      		<p>@{{ "Quantity: " + item.quantity }}
 			      		<hr>
 			      	</div>
 			      	<button class="btn btn-primary" ng-click="buy()">Buy</button>
+
+			      	<h3>Purchase History</h3>
+			      	<hr>
+			      	<div ng-init="purchasedItems=[]" ng-repeat="item in purchasedItems">
+			      		<p>@{{ "Album: " + item.title }}</p>
+			      		<p>@{{ "Quantity: " + item.quantity }}</p>
+			      		<hr>
+			      	</div>
+
 		      	</div>
 		      </div>
 
