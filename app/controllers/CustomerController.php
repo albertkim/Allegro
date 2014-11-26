@@ -47,11 +47,16 @@ class CustomerController extends BaseController {
 
 	public function searchItem(){
 
-		// only category
+		$searchInfo = array(
+						'category' => Input::get('categoryInput'),
+						'title' => Input::get('titleInput'),
+						'artist' => Input::get('artistInput'),
+						'quantity' => Input::get('quantityInput')
+		);
 
-		DB::transaction(function(){
+		DB::transaction(function() use ($searchInfo){
 						$item = DB::table('item')
-								->where('category', $category)
+								->where('category', $searchInfo["category"])
 								->get();
 
 				
@@ -60,18 +65,18 @@ class CustomerController extends BaseController {
 
 		//only title
 
-		DB::transaction(function(){
+		DB::transaction(function() use ($searchInfo){
 						$item = DB::table('item')
-								->where('title', $title)
+								->where('title', $searchInfo["title"])
 								->get();
 
 		});
 
 		//only leading singer
 
-		DB::transaction(function(){
+		DB::transaction(function() use ($searchInfo){
 						$singer = DB::table('leadsinger')
-								->where('name', $singer)
+								->where('name', $searchInfo["artist"])
 								->get();
 
 			$upc = var_dump($singer->upc);
@@ -85,10 +90,10 @@ class CustomerController extends BaseController {
 
 		// category and title
 
-		DB::transaction(function(){
+		DB::transaction(function() use ($searchInfo) {
 						$item = DB::table('item')
-								->where('title', $title)
-								->where('category', $category)
+								->where('title', $searchInfo["title"])
+								->where('category', $searchInfo["category"])
 								->get();
 
 				
