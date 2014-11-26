@@ -4,6 +4,8 @@
 		<title>CPSC 304 - Allegro Music Store!</title>
 
 		{{ HTML::style( asset('css/bootstrap.min.css')) }}
+		{{ HTML::style( asset('css/cart.css')) }}
+
 		{{ HTML::script('jquery-2.1.1.min.js') }}
 		{{ HTML::script('bootstrap.min.js') }}
 		{{ HTML::script('handlebars.js') }}
@@ -16,7 +18,7 @@
   <body ng-app="Allegro">
     @section('header')
 
-		<nav class="navbar navbar-default" role="navigation" style="background-color: white">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: white">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -35,7 +37,9 @@
           </ul>
 
           @if(isset($_COOKIE["user"]))
-          {{ $_COOKIE["user"] }}
+          <div class="nav navbar-form navbar-right">
+          	<button id="cartButton" class="btn btn-default">Cart</button>
+          </div>
 		      <div class="nav navbar-form navbar-right">
 		      	<form role="form" action="logout" method="POST">
 			      	<div class="form-group" hidden>
@@ -44,6 +48,21 @@
 			      	<button id="logoutButton" type="submit" class="btn btn-default">Logout</button>
 		      	</form>
 		      </div>
+
+		      <!-- shopping cart -->
+		      <div id="cart" ng-controller="cartController" ng-model="cartItems">
+		      	<div class="container">
+			      	<h3>Shopping cart (@{{ cartItems.length  }})</h3>
+			      	<hr>
+			      	<div ng-model="cartItem" ng-repeat="item in cartItems">
+			      		<p>@{{ "Album: " + item.title }}</p>
+			      		<p>@{{ "Quantity: " + item.quantity}}
+			      		<hr>
+			      	</div>
+			      	<button class="btn btn-primary" ng-click="buy()">Buy</button>
+		      	</div>
+		      </div>
+
 		      @else
           <ul class="nav navbar-nav navbar-right">
             <li><a id="registerButton" href="register" class="btn btn-default">Register</a></li>
@@ -64,14 +83,14 @@
         </div><!--/.nav-collapse -->
       </div><!--/.container-fluid -->
     </nav>
+    <div style="height: 50px"></div>
     @show
 
     <div class="container">
 			@yield('content')
     </div>
 
-    <div style="height: 70px">
-    </div>
+    <div style="height: 70px"></div>
 
 		<nav class="navbar navbar-default navbar-fixed-bottom">
 			<div class="navbar-inner navbar-content-center">
@@ -86,11 +105,11 @@
   </body>
   <script>
   	var app = angular.module("Allegro", []);
-
   	// global function for setting message
   	var setMessage = function(message){
   		$("#message").text(message);
   	}
   </script>
   @yield('scripts')
+  <script src="js/cart.js"></script>
 </html>

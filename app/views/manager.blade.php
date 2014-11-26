@@ -14,28 +14,19 @@
 			<div class="col-lg-12">
 				<h2>Top selling items:</h2>
 				<br>
+			<form class="form-group" action="getTopItemsByDate" method="POST">
+				<div class="form-group">
+		      		<label>Select date:</label>
+		      		<input class="form-control input" name="date" placeholder="yyyy/mm/dd"></input>
+		    	</div>
+		    	<div class="form-group">
+		      		<label>Show:</label>
+		      		<input class="form-control input" name="number" placeholder="10"></input>
+		    	</div>
+		    	<button id="getTopSellingItemsButton" type="submit" class="btn btn-primary">Get Top Selling Items</button><br>
+		    </form>
 				<table class="table">
-					<tr>
-						<th>UPC</th>
-						<th>Category</th>
-						<th>Price</th>
-						<th>Units</th>
-						<th>Total value</th>
-					</tr>
-					<tr>
-						<td>2244</td>
-						<td>Classical</td>
-						<td>10.50</td>
-						<td>10</td>
-						<td>105.00</td>
-					</tr>
-					<tr>
-						<td>2245</td>
-						<td>Rock</td>
-						<td>5.00</td>
-						<td>15</td>
-						<td>20.00</td>
-					</tr>
+					
 				</table>
 			</div>
 		</div> <!-- row -->
@@ -124,7 +115,7 @@
 
 	    <div class="form-group">
 	      <label>Song Name</label>
-	      <input class="form-control" ng-model="songTitle" id="songTitle" placeholder="Baby">
+	      <input id="songInput" class="form-control" ng-model="songTitle" id="songTitle" placeholder="Baby">
 	    </div>
 	    <button id="addAlbum" class="btn btn-primary" ng-click="addSong()">Add Song</button>
 	    <button id="addAlbum" class="btn btn-primary pull-right" ng-click="addAlbum()">Submit Album</button>

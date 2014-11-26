@@ -1,7 +1,5 @@
 <?php
-
 class CustomerController extends BaseController {
-
 	/*
 	|--------------------------------------------------------------------------
 	| Default Home Controller
@@ -14,25 +12,21 @@ class CustomerController extends BaseController {
 	|	Route::get('/', 'HomeController@showWelcome');
 	|
 	*/
-
 	public function get(){
 		log::info("Current user: ");
 		log::info( Cookie::get("user"));
 		$albums = DB::table("item")->get();
-
 		// get all related data to albums, add to album objects
 		foreach($albums as $album){
 			$id = intval($album->upc);
 			$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
 			$songs = DB::table("hasSong")->where("upc", $id)->get();
-
 			// if exists
 			if(isset($leadSinger->name)){
 				$album->leadSinger = $leadSinger->name;
 			} else{
 				$album->leadSinger = "None";
 			}
-
 			if(isset($songs)){
 				$album->songs = $songs;
 			} else{
@@ -44,101 +38,93 @@ class CustomerController extends BaseController {
 			"albums" => $albums,
 		));
 	}
-
+	public function getItems(){
+		$albums = DB::table("item")->get();
+		// get all related data to albums, add to album objects
+		foreach($albums as $album){
+			$id = intval($album->upc);
+			$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
+			$songs = DB::table("hasSong")->where("upc", $id)->get();
+			// if exists
+			if(isset($leadSinger->name)){
+				$album->leadSinger = $leadSinger->name;
+			} else{
+				$album->leadSinger = "None";
+			}
+			if(isset($songs)){
+				$album->songs = $songs;
+			} else{
+				$album->songs = array();
+			}
+		}
+		return json_encode($albums);
+	}
 	public function searchItem(){
-
-		$searchInfo = array(
-						'category' => Input::get('categoryInput'),
-						'title' => Input::get('titleInput'),
-						'artist' => Input::get('artistInput'),
-						'quantity' => Input::get('quantityInput')
-		);
-
-		DB::transaction(function() use ($searchInfo){
-						$item = DB::table('item')
-								->where('category', $searchInfo["category"])
-								->get();
-
-				
-
-		});
-
-		//only title
-
-		DB::transaction(function() use ($searchInfo){
-						$item = DB::table('item')
-								->where('title', $searchInfo["title"])
-								->get();
-
-		});
-
-		//only leading singer
-
-		DB::transaction(function() use ($searchInfo){
-						$singer = DB::table('leadsinger')
-								->where('name', $searchInfo["artist"])
-								->get();
-
-			$upc = var_dump($singer->upc);
-
-						$item = DB::table('item')
-								->where('upc', $upc)
-								->get();
-
-				
-		});
-
-		// category and title
-
-		DB::transaction(function() use ($searchInfo) {
-						$item = DB::table('item')
-								->where('title', $searchInfo["title"])
-								->where('category', $searchInfo["category"])
-								->get();
-
-				
-		});
-
-		// category and singer
-
+		// only category
 		DB::transaction(function(){
 						$item = DB::table('item')
 								->where('category', $category)
 								->get();
-
+				
 		});
-
+		//only title
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('title', $title)
+								->get();
+		});
+		//only leading singer
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+			$upc = var_dump($singer->upc);
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->get();
+				
+		});
+		// category and title
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('title', $title)
+								->where('category', $category)
+								->get();
+				
+		});
+		// category and singer
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('category', $category)
+								->get();
+		});
 		// title and singer
 		DB::transaction(function(){
 						$singer = DB::table('leadsinger')
 								->where('name', $singer)
 								->get();
-
 					$upc = var_dump($singer->upc);
-
-
 						$item = DB::table('item')
 								->where('upc', $upc)
 								->where('title', $title)
 								->get();
-
 		});
-
 		// category, title, and singer
-
 		DB::transaction(function(){
 						$singer = DB::table('leadsinger')
 								->where('name', $singer)
 								->get();
-
 					$upc = var_dump($singer->upc);
-
 						$item = DB::table('item')
 								->where('upc', $upc)
 								->where('title', $title)
 								->where('category', $category)
 								->get();
-
 		});
+	}
+	public function buyItems(){
+		$albums = file_get_contents("php://input");
+		$albums = json_decode($album, true);
+		return "Successfully purchased items";
 	}
 }

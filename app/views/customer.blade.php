@@ -39,10 +39,11 @@ Quantity: <input ng-model="quantity" name="quantity" id="quantity" placeholder="
 -->
 
 
-<section id="demo" style="position: relative; width: 100%">
- 
+<section id="demo" style="position: relative; width: 100%" ng-controller="itemsController" ng-init="albums=[]">
+ 	
+ 	<!--
  	@foreach($albums as $album)
-	<article class="white-panel" style="position: absolute; border-style: solid; border-width: 1px; padding: 10px">
+	<article class="white-panel" ng-controller="cartController" data-ng-init="init()" style="position: absolute; border-style: solid; border-width: 1px; padding: 10px">
 		<h1><a href="#">Album: {{ $album->title }}</a></h1><hr>
 		<h2>Artist: {{ $album->leadSinger }}</h2>
 		<h4>In Stock: {{$album->stock}}</h4>
@@ -50,9 +51,24 @@ Quantity: <input ng-model="quantity" name="quantity" id="quantity" placeholder="
 		@foreach($album->songs as $song)
 			<p>Song: {{ $song->title }}</p>
 		@endforeach
-		<button class="btn btn-primary pull-right">Add to cart</button>
+		<button class="btn btn-primary pull-right" upc="{{ $album->upc }}">Add to cart</button>
 	</article>
 	@endforeach
+	-->
+	
+	<article class="white-panel" ng-repeat="x in albums" style="position: absolute; border-style: solid; border-width: 1px; padding: 10px">
+		<h1><a href="#">Album: @{{ x.title }}</a></h1>
+		<hr>
+		<h2>Artist: @{{ x.leadSinger }}</h2>
+		<h4>In Stock: @{{ x.stock }}</h4>
+		<h5>Category: @{{ x.category }}</h5>
+		<h5>Year: @{{ x.year }}</h5>
+		<hr>
+		<p ng-repeat="song in x.songs">
+			Song: @{{ song.title }}
+		</p>
+		<button class="btn btn-primary pull-right" upc="{{ $album->upc }}" ng-click="addItemToCart($index)">Add to cart</button>
+	</article>
 
 </section>
 

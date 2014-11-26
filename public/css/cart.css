@@ -1,0 +1,10 @@
+#cart{
+	position: absolute;
+	top: 60px;
+	right: 0px;
+	height: 1000px;
+	width: 300px;
+	z-index: 99;
+	background-color: white;
+	box-shadow: -5px 5px 5px #888888;
+}
