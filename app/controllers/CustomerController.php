@@ -55,7 +55,6 @@ class CustomerController extends BaseController {
 								->get();
 
 				
-				checkItemExist($item);
 
 		});
 
@@ -66,7 +65,6 @@ class CustomerController extends BaseController {
 								->where('title', $title)
 								->get();
 
-				checkItemExist($item);
 		});
 
 		//only leading singer
@@ -83,7 +81,6 @@ class CustomerController extends BaseController {
 								->get();
 
 				
-				checkItemExist($item);
 		});
 
 		// category and title
@@ -95,7 +92,6 @@ class CustomerController extends BaseController {
 								->get();
 
 				
-				checkItemExist($item);
 		});
 
 		// category and singer
@@ -105,7 +101,6 @@ class CustomerController extends BaseController {
 								->where('category', $category)
 								->get();
 
-				checkItemExist($item);	
 		});
 
 		// title and singer
@@ -122,7 +117,6 @@ class CustomerController extends BaseController {
 								->where('title', $title)
 								->get();
 
-				checkItemExist($item);
 		});
 
 		// category, title, and singer
@@ -140,25 +134,6 @@ class CustomerController extends BaseController {
 								->where('category', $category)
 								->get();
 
-				checkItemExist($item);
 		});
 	}
-
-	public function checkItemExist($item){
-		if (count($item) > 0) {
-			checkStock($item);
-		}
-		else {
-			//item does not exist message
-		}
-	}
-
-	public function checkStock($item){
-
-		$stock = var_dump($item->stock);
-
-
-
-	}
-
 }

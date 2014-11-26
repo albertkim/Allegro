@@ -24,16 +24,16 @@ class ClerkController extends BaseController {
 
 	public function checkRefund() 
 	{
-		//$receiptId = new stdClass();
-		//$receiptId->receipt_id = Input::get('receipt_id');
+		$receiptId = file_get_contents("php://input");
+		$receiptId = json_decode($receiptId, true);
 
 		$timestamp = date('Y-m-d');
 
 		//verify the receipt is valid
 
-		DB::transaction(function(){
+		DB::transaction(function() use ($receiptId){
 			$query = DB::table('orders')
-							->where('receiptId', '=', '111')
+							->where('receiptId', '=', $receiptId)
 							-> get();
 
 
