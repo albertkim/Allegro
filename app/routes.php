@@ -20,6 +20,8 @@ Route::get('/', "HomeController@get");
 // Customer business logic
 Route::get('customer', "CustomerController@get");
 
+Route::get('getItems', "CustomerController@getItems");
+
 // Clerk business logic
 Route::get('clerk', "ClerkController@get");
 

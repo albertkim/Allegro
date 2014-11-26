@@ -45,6 +45,32 @@ class CustomerController extends BaseController {
 		));
 	}
 
+	public function getItems(){
+		$albums = DB::table("item")->get();
+
+		// get all related data to albums, add to album objects
+		foreach($albums as $album){
+			$id = intval($album->upc);
+			$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
+			$songs = DB::table("hasSong")->where("upc", $id)->get();
+
+			// if exists
+			if(isset($leadSinger->name)){
+				$album->leadSinger = $leadSinger->name;
+			} else{
+				$album->leadSinger = "None";
+			}
+
+			if(isset($songs)){
+				$album->songs = $songs;
+			} else{
+				$album->songs = array();
+			}
+		}
+
+		return json_encode($albums);
+	}
+
 	public function searchItem(){
 
 		// only category
