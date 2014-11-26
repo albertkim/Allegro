@@ -15,9 +15,13 @@
 				<h2>Top 5 items:</h2>
 				<br>
 				<table class="table" ng-controller="topItemsController" ng-init="topItems=[]">
+					<tr>
+						<th>Album title</th>
+						<th>Times sold</th>
+					</tr>
 					<tr ng-repeat="item in topItems">
 						<td>@{{ item.TITLE }}</td>
-						<td>@{{ "Times sold: " + item.SUM }}</td>
+						<td>@{{ item.SUM }}</td>
 					</tr>
 				</table>
 			</div>
@@ -30,7 +34,7 @@
 			<form class="form-group" action="getDailySalesReport" method="POST">
 		    <div class="form-group">
 		      <label>Select date:</label>
-		      <input class="form-control" id="reportDate" placeholder="YYYY/MM/DD"></input>
+		      <input class="form-control" id="reportDate" placeholder="YYYY-MM-DD"></input>
 		    </div>
 		    <button type="submit" class="btn btn-primary">Get report</button>
 			</form>

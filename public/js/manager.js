@@ -116,3 +116,7 @@ app.controller("topItemsController", function($scope, $http){
 
 	init();
 });
+
+app.controller("topItemsByDateController", function($scope, $http){
+	
+});
