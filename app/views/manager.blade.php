@@ -35,11 +35,13 @@
 			<div class="col-lg-12">
 				<h2>Daily Sales Report:</h2>
 				<hr>
+			<form class="form-group" action="getDailySalesReport" method="POST">
 		    <div class="form-group">
 		      <label>Select date:</label>
-		      <input class="form-control" id="date" placeholder="YYYY/MM/DD">
+		      <input class="form-control" id="reportDate" placeholder="YYYY/MM/DD">
 		    </div>
 		    <button type="submit" class="btn btn-primary">Get report</button>
+			</form>
 				<h3>Items sold:</h3>
 				<table class="table">
 					<tr>

@@ -81,7 +81,18 @@ class ManagerController extends BaseController {
 		log::info("POST getTopItemsByDate");
 		$date = Input::get("date");
 		$number = Input::get("number");
-		
+		return View::make("manager", array("message" => $date));
+
 	}
+
+	public function getDailySalesReport(){
+		$date = array(
+						'date' => Input::get('reportDate'));
+	}
+
+
+
+
+
 
 }
