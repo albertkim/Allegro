@@ -12,11 +12,12 @@
 	<div class="col-lg-8">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>Top selling items:</h2>
+				<h2>Top 5 items:</h2>
 				<br>
 				<table class="table" ng-controller="topItemsController" ng-init="topItems=[]">
 					<tr ng-repeat="item in topItems">
-						<td>@{{ item }}</td>
+						<td>@{{ item.TITLE }}</td>
+						<td>@{{ "Times sold: " + item.SUM }}</td>
 					</tr>
 				</table>
 			</div>
