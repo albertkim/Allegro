@@ -73,6 +73,8 @@
 	<div class="col-lg-4" ng-controller="addAlbumController" ng-init="songs=[]">
 		<h2>Add an album</h2>
 		<hr>
+		<button id="addAlbum" class="btn btn-primary" ng-click="addAllSongs()">Auto-populate</button>
+		<hr>
 	  <!-- <form> -->
 	    <div class="form-group">
 	      <label>Album Title:</label>

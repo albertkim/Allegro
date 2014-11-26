@@ -14,6 +14,7 @@ app.controller("itemsController", function($scope, $http, cartItems){
 		if(_.findWhere(cartItems, album) == undefined){
 			album.quantity = 1;
 			cartItems.push(album);
+			$("#cart").show();
 		} else{
 			_.findWhere(cartItems, album).quantity++;
 		}
