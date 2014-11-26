@@ -38,7 +38,7 @@
 			<form class="form-group" action="getDailySalesReport" method="POST">
 		    <div class="form-group">
 		      <label>Select date:</label>
-		      <input class="form-control" id="reportDate" placeholder="YYYY/MM/DD">
+		      <input class="form-control" id="reportDate" placeholder="YYYY/MM/DD"></input>
 		    </div>
 		    <button type="submit" class="btn btn-primary">Get report</button>
 			</form>

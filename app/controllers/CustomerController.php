@@ -63,14 +63,35 @@ class CustomerController extends BaseController {
 		return json_encode($albums);
 	}
 
-	public function searchItem(){
-		// only category
-		DB::transaction(function(){
-						$item = DB::table('item')
-								->where('category', $category)
-								->get();
-				
-		});
+	public function searchItem() {
+
+
+		$searchInfo = array(
+						'category' => Input::get('categoryInput'),
+						'title'    => Input::get('titleInput'),
+						'artist'   => Input::get('artistInput'),
+
+		);
+
+			$item = DB::table('item')
+					->where('category', 'LIKE', $searchInfo['category'])
+					->where('title', 'LIKE', $searchInfo['title'])
+					->where('artist', 'LIKE', $searchInfo['artist'])
+					->get();
+
+
+
+
+
+		if(isset($songs)){
+			// only category
+				$item = DB::table('item')
+					->where('category', $category)
+					->get();
+		}
+		else{
+			
+		}
 		//only title
 		DB::transaction(function(){
 						$item = DB::table('item')

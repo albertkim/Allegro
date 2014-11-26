@@ -71,10 +71,12 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItems(){
+		
 		DB::transaction(function(){
 			DB::select();
 			DB::select();
 		});
+		
 	}
 
 	public function getTopItemsByDate(){
@@ -86,8 +88,6 @@ class ManagerController extends BaseController {
 	}
 
 	public function getDailySalesReport(){
-		$date = array(
-						'date' => Input::get('reportDate'));
 	}
 
 

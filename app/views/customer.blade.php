@@ -20,9 +20,6 @@
 {{ Form::label('artist', 'Artist:') }}
 {{ Form::text('artistInput', '', array('placeholder' => 'Justin Bieber'))}}
 
-{{ Form::label('quantity', 'Quantity:') }}
-{{ Form::text('quantityInput', '', array('placeholder' => '10'))}}
-
 {{ Form::submit('Search Item', array('class' => 'btn btn-primary'))}}
 {{ Form::close() }}
 
@@ -40,6 +37,8 @@ Quantity: <input ng-model="quantity" name="quantity" id="quantity" placeholder="
 
 
 <section id="demo" style="position: relative; width: 100%" ng-controller="itemsController" ng-init="albums=[]">
+
+
 	
 	<article class="white-panel" ng-repeat="x in albums" style="position: absolute; border-style: solid; border-width: 1px; padding: 10px">
 		<h1><a href="#">Album: @{{ x.title }}</a></h1>
@@ -52,6 +51,8 @@ Quantity: <input ng-model="quantity" name="quantity" id="quantity" placeholder="
 		<p ng-repeat="song in x.songs">
 			Song: @{{ song.title }}
 		</p>
+		<label> Quantity: </label>	
+		<input ng-model="quantity" name="quantity" id="quantity" placeholder=" 0"></input>
 		<button class="btn btn-primary pull-right" ng-click="addItemToCart($index)">Add to cart</button>
 	</article>
 
