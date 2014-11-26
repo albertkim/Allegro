@@ -72,7 +72,8 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItems(){
-		$topItems = DB::select("SELECT I.UPC, SUM(QUANTITY) FROM PURCHASEITEM P, ITEMS I, GROUP BY I.UPC ORDER BY SUM(QUANTITY) DESC");
+		$topItems = DB::select("SELECT I.TITLE, P.UPC, SUM(QUANTITY) AS SUM FROM PURCHASEITEM P, ITEM I WHERE P.UPC = I.UPC 
+			GROUP BY P.UPC ORDER BY SUM(P.QUANTITY) DESC LIMIT 5");
 
 		return json_encode($topItems);
 	}
