@@ -113,7 +113,7 @@
 	    	<label>Songs:</label>
 	    	<div class="song" ng-model="song" ng-repeat="x in songs">
 	    		<div class="col-lg-8">
-		    		<p>@{{ "Song title: " + x.songTitle}}</p>
+		    		<p>@{{ "Song title: " + x.title}}</p>
 	    		</div>
 	    		<div class="col-lg-4">
 	    			<button class="btn btn-secondary" ng-click="deleteSong($index)">Delete</button>
