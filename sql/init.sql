@@ -13,6 +13,7 @@ PRIMARY KEY (id)
 CREATE TABLE Item
 (upc INT NOT NULL AUTO_INCREMENT,
 title VARCHAR(100),
+type VARCHAR(100);
 category CHAR(100),
 company VARCHAR(100),
 year INT,

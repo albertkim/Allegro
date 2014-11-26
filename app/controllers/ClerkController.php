@@ -24,101 +24,84 @@ class ClerkController extends BaseController {
 
 	public function checkRefund() 
 	{
-		$receiptId = file_get_contents("php://input");
-		$receiptId = json_decode($receiptId, true);
-
-		$timestamp = date('Y-m-d');
+		$refundInfo = array(
+						'receiptId' => Input::get('receiptId')
+		);
 
 		//verify the receipt is valid
 
-		DB::transaction(function() use ($receiptId){
-			$query = DB::table('orders')
-							->where('receiptId', '=', $receiptId)
-							-> get();
-
+		$query = DB::table('orders')
+						->where('receiptId', $refundInfo['receiptId'])
+						->get();		
 
 			// verify it date was not more than 15 days ago
 			if(count($query) > 0){
-
-				DB::transaction(function(){
+		
 				$query2 = DB::table('orders')
-								->where('receiptId', '111')
-								->where('date', '>=', Carbon::now()->subdays(15));
+								->where('receiptId', $refundInfo["receiptId"])
+								->whereBetween('date', array(Carbon::now()->subdays(15), Carbon::now()))
+								->get();
+
 
 				//check if receipt is in Refund table
 				if (count($query2) > 0){
 
-					Db::transaction(function(){
+
 					$query3 = DB::table('return_back')
-										->where('receiptId', '=', '112')
+										->where('receiptId', $refundInfo["receiptId"])
 										->get();
 
-					if(count($query3) > 0){
+					if(count($query3) == 0){
 
-						DB::transaction(function(){
-							DB::table('return_back')->insert(
-								array(
-									'retid' => '1',
-									'date' => $timestamp,
-									'receiptId' => '111'
-									)
+
+						$timestamp = date('Y-m-d');
+
+						DB::table('return_back')->insert(
+							array(
+								'retid' => '2',
+								'date' => $timestamp,
+								'receiptId' =>  $refundInfo["receiptId"]
+								)
 							);
-						});
 
-						// update the stock
+							// get the item purchased from refund
 				
-						DB::transaction(function(){
 							$purchase = DB::table('purchaseitem')
-									->where('receiptID', '111')
-									->get();
+								->where('receiptID',  $refundInfo["receiptId"])
+								->get();
 
-							$qty = var_dump($purchase->qty);
-							$upc = var_dump($purchase->upc);
-
-							$item = DB::table('item')
-									->where('upc', $upc)
-									->get();
-
-
-							DB::table('item')
-									->increment('stock', $qty, 	
-										array('upc' => $upc));
+							$qty = $purchase[0]->quantity;
+							$upc = $purchase[0]->upc;
 
 							// add to returnitem table
 							DB::table('returnitem')->insert(
 								array(
-									'retid' => '1',
+									'retid' => '2',
 									'upc' => $upc,
-									quantity => $qty
+									'quantity' => $qty
 									)
 								);
-							});
+
+							// update the stock
+							DB::table('item')
+									->where('upc', $upc)
+									->update(array('stock' => 'stock' + $qty));
+
+						return View::make("clerk", array("message" => "Refund is successful."));
 
 					}
 					else{
-						//Session::flash('refundedMsg', "You have already refunded this item.");
-						//return Redirect::to('checkRefund', )
-						//return Redirect::to('checkRefund')->with('message', 'test2');
-						return View::make("clerk", array("message" => "Passwords do not match"));
+						return View::make("clerk", array("message" => "Item already has been refunded!"));
 						}
-					});
+					
 				}
 				else{
-						//Session::flash('daysMsg', "You cannot refund an item that was purchased more than 15 days ago.");
-						//return Redirect::to('checkRefund')->with('message', 'test3');
-						return View::make("clerk", array("message" => "Passwords do not match"));
+						return View::make("clerk", array("message" => "Purchase was made more than 15 days ago. Not valid for return."));
 					}
-				});
 			}
 			else{
-				//Session::flash('receiptMsg', "Receipt Id is not valid. Please try again.");
-				//return Redirect::to('checkRefund')->with('message', 'test3');
-				return View::make("clerk", array("message" => "Passwords do not match"));
+				return View::make("clerk", array("message" => "There is no purchase with this receipt Id."));
 			}
-			
-		//return Redirect::to('checkRefund')->with('message', 'test4');
-		return View::make("clerk", array("message" => "Passwords do not match"));
-		});
 		
 	}
 }
