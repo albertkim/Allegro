@@ -18,7 +18,7 @@
   <body ng-app="Allegro">
     @section('header')
 
-		<nav class="navbar navbar-default" role="navigation" style="background-color: white">
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: white">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -56,6 +56,7 @@
 			      	<hr>
 			      	<div ng-model="cartItem" ng-repeat="item in cartItems">
 			      		<p>@{{ "Album: " + item.title }}</p>
+			      		<p>@{{ "Quantity: " + item.quantity}}
 			      		<hr>
 			      	</div>
 			      	<button class="btn btn-primary" ng-click="buy()">Buy</button>
@@ -82,14 +83,14 @@
         </div><!--/.nav-collapse -->
       </div><!--/.container-fluid -->
     </nav>
+    <div style="height: 50px"></div>
     @show
 
     <div class="container">
 			@yield('content')
     </div>
 
-    <div style="height: 70px">
-    </div>
+    <div style="height: 70px"></div>
 
 		<nav class="navbar navbar-default navbar-fixed-bottom">
 			<div class="navbar-inner navbar-content-center">

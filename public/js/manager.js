@@ -4,6 +4,7 @@ app.controller("addAlbumController", function($scope, $http){
 		$scope.songs.push({
 			title: $scope.songTitle,
 		});
+		$("#songInput").val("");
 	},
 
 	$scope.addAlbum = function(){

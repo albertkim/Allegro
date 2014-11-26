@@ -12,9 +12,10 @@ app.controller("itemsController", function($scope, $http, cartItems){
 		var album = $scope.albums[index];
 		console.log(album);
 		if(_.findWhere(cartItems, album) == undefined){
+			album.quantity = 1;
 			cartItems.push(album);
 		} else{
-			setMessage("Item is already in cart");
+			_.findWhere(cartItems, album).quantity++;
 		}
 		
 	};
@@ -33,6 +34,14 @@ app.controller("itemsController", function($scope, $http, cartItems){
 });
 
 app.controller("cartController", function($scope, $http, cartItems){
+
+	$scope.buy = function(){
+		$http.post("buyItems", cartItems).success(function(response){
+			setMessage(response);
+		}).error(function(response){
+			setMessage(response);
+		});
+	};
 
 	var init = function(){
 		$scope.cartItems = cartItems;

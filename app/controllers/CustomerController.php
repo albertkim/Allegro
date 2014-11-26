@@ -162,4 +162,15 @@ class CustomerController extends BaseController {
 
 		});
 	}
+
+	public function buyItems(){
+
+		$albums = file_get_contents("php://input");
+		$albums = json_decode($album, true);
+
+		return "Successfully purchased items";
+
+	}
+
 }
+
