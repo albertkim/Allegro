@@ -36,13 +36,21 @@ class ManagerController extends BaseController {
 				)
 			);
 
+			if(!$id){
+				return("Could not add album");
+			}
+
 			// add artist relation to album
-			DB::table("leadSinger")->insert(
+			$leadSinger = DB::table("leadSinger")->insert(
 				array(
 					"upc" => $id,
 					"name" => $album["artist"]
 				)
 			);
+
+			if($leadSinger){
+				retrn("Could add lead singer");
+			}
 
 			// add each song relation to album
 			foreach($album["songs"] as $song){

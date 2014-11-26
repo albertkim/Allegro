@@ -7,6 +7,20 @@ app.controller("addAlbumController", function($scope, $http){
 	},
 
 	$scope.addAlbum = function(){
+		// form validation
+		if(!isNormalInteger($scope.year)){
+			setMessage("Year must be an integer");
+			return;
+		}
+		if(!isNormalInteger($scope.price)){
+			setMessage("Price must be an integer");
+			return;
+		}
+		if(!isNormalInteger($scope.stock)){
+			setMessage("Stock must be an integer");
+			return;
+		}
+
 		// make album object
 		var album = {
 			title: $scope.title,
@@ -31,3 +45,8 @@ app.controller("addAlbumController", function($scope, $http){
 		$scope.songs.splice(index, 1);
 	}
 });
+
+function isNormalInteger(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n >= 0;
+}

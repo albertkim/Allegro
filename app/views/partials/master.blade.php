@@ -14,7 +14,7 @@
 
 	</head>
   <body ng-app="Allegro">
-  		Messages: {{{ isset($message) ? $message : "None" }}}
+  		<div id="message">Messages: {{{ isset($message) ? $message : "None" }}}</div>
       @section('header')
 			<nav class="navbar navbar-default" role="navigation" style="background-color: white">
         <div class="container-fluid">
@@ -72,6 +72,11 @@
   </body>
   <script>
   	var app = angular.module("Allegro", []);
-  	</script>
+
+  	// global function for setting message
+  	var setMessage = function(message){
+  		$("#message").text(message);
+  	}
+  </script>
   @yield('scripts')
 </html>
