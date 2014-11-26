@@ -37,6 +37,13 @@ app.controller("cartController", function($scope, $http, cartItems){
 
 	$scope.buy = function(){
 
+		console.log(cartItems);
+
+		if(cartItems.length == 0){
+			setMessage("There are no items in the cart");
+			return;
+		}
+
 		// create the order object
 		var order = {
 			card_num: "1234",
@@ -49,6 +56,8 @@ app.controller("cartController", function($scope, $http, cartItems){
 			setMessage(response);
 			// clear cart after purchase
 			cartItems = [];
+			$scope.cartItems = [];
+			init();
 		}).error(function(response){
 			setMessage(response);
 		});
@@ -58,7 +67,6 @@ app.controller("cartController", function($scope, $http, cartItems){
 		$scope.cartItems = cartItems;
 		// get list of previously purchased items from user
 		$http.get("getPurchasedItems").success(function(response){
-			console.log(response);
 			$scope.purchasedItems = response;
 		});
 	};

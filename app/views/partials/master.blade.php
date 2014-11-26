@@ -5,6 +5,7 @@
 
 		{{ HTML::style( asset('css/bootstrap.min.css')) }}
 		{{ HTML::style( asset('css/cart.css')) }}
+		{{ HTML::style( asset('css/popup.css')) }}
 
 		{{ HTML::script('jquery-2.1.1.min.js') }}
 		{{ HTML::script('bootstrap.min.js') }}
@@ -19,6 +20,14 @@
     @section('header')
 
 		<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="background-color: white">
+
+    <div id="popup" hidden>
+    	<div class="container" style="padding-top: 50px">
+    		<h4 id="message"></h4>
+    		<button id="closePopup" class="btn btn-primary" style="position: absolute; bottom: 10px; right: 20px">Close</button>
+    	</div>
+    </div>
+
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -115,8 +124,12 @@
   <script>
   	var app = angular.module("Allegro", []);
   	// global function for setting message
+  	$("#closePopup").on("click", function(){
+  		$("#popup").hide();
+  	});
   	var setMessage = function(message){
   		$("#message").text(message);
+  		$("#popup").show();
   	}
   </script>
   @yield('scripts')
