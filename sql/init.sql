@@ -1,12 +1,13 @@
 CREATE TABLE Customer
-(cid INT NOT NULL AUTO_INCREMENT,
+(id INT NOT NULL AUTO_INCREMENT,
 password VARCHAR(100),
 username CHAR(100),
 name CHAR(100),
 address VARCHAR(100),
 phone VARCHAR(20),
+remember_token CHAR(100),
 UNIQUE(username),
-PRIMARY KEY (cid)
+PRIMARY KEY (id)
 );
 
 CREATE TABLE Item
@@ -47,7 +48,7 @@ ON UPDATE CASCADE;
 CREATE TABLE Orders (
 receiptId INT AUTO_INCREMENT,
 date DATE,
-cid INT NOT NULL,
+id INT NOT NULL,
 card_num INT,
 expiryDate DATE,
 expectedDate DATE,
@@ -56,8 +57,8 @@ PRIMARY KEY (receiptId)
 );
 
 ALTER TABLE Orders
-ADD FOREIGN KEY (cid)
-REFERENCES Customer(cid);
+ADD FOREIGN KEY (id)
+REFERENCES Customer(id);
 
 CREATE TABLE PurchaseItem
 (receiptId INT,

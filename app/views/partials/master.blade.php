@@ -36,7 +36,7 @@
             <li><a href="manager">Manager</a></li>
           </ul>
 
-          @if(isset($_COOKIE["user"]))
+          @if(Auth::check())
           <div class="nav navbar-form navbar-right">
           	<button id="cartButton" class="btn btn-default">Cart</button>
           </div>

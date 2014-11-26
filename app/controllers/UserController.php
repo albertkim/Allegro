@@ -45,14 +45,24 @@ class UserController extends BaseController {
 
 		$hashedPassword = Hash::make($password);
 
-		$rowsAffected = DB::insert("INSERT INTO CUSTOMER (USERNAME, PASSWORD, NAME, ADDRESS, PHONE) VALUES (?,?,?,?,?)", array($username, $hashedPassword, $name, $address, $phone_number));
-		if($rowsAffected != null){
+		try{
+			DB::table("customer")->insert(array(
+				"username" => $username,
+				"password" => $hashedPassword,
+				"name" => $name,
+				"address" => $address,
+				"phone" => $phone_number
+			));
+
 			log::info("User successfully added");
-			Cookie::make("user", $username, 60);
+
+			if(Auth::attempt(array("username" => $username, "password" => $password))){
+				return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
+			}
+
 			return View::make("customer", array("message" => "Thanks for registering"));
-		} else{
-			log::info("User could not be added");
-			return View::make("register", array("message" => "User could not be added"));
+		} catch(Exception $e){
+			return View::make("customer", array("message" => "There was a problem registering. The username may already be taken"));
 		}
 		
 	}
@@ -62,32 +72,18 @@ class UserController extends BaseController {
 		$username = Input::get("username");
 		$password = Input::get("password");
 
-		$userArray = DB::select("SELECT * FROM CUSTOMER WHERE USERNAME=?", array($username));
-		
-		if(count($userArray) != 0){
-			$user = current($userArray);
-			$hashedPassword = $user->password;
-			if(Hash::check($password, $hashedPassword)){
-				log::info("Password correct");
-				// set session for 1 hour
-				Cookie::make("user", $username, 60);
-				log::info("Cookie set for username: " + $username);
-				return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
-			} else{
-				log::info("Password incorrect");
-				// password was incorrect
-				return View::make("hello", array("message" => "Invalid credentials"));
-			}
+		if(Auth::attempt(array("username" => $username, "password" => $password))){
+			return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
 		} else{
-			log::info("User does not exist");
-			// user did not exist
-			return View::make("hello", array("message" => "User does not exist"));
+			return View::make("hello", array("message" => "Invalid credentials"));
 		}
+
 	}
 
 	public function logout(){
 		log::info("POST logout");
-		Cookie::forget("user");
+		// $cookie = Cookie::forget("user");
+		Auth::logout();
 		return View::make("hello", array("message" => "Logged out"));
 	}
 

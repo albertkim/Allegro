@@ -21,28 +21,28 @@ class CustomerController extends BaseController {
 		$albums = DB::table("item")->get();
 
 		// get all related data to albums, add to album objects
-		foreach($albums as $album){
-			$id = intval($album->upc);
-			$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
-			$songs = DB::table("hasSong")->where("upc", $id)->get();
+		if(isset($albums)){
+			foreach($albums as $album){
+				$id = intval($album->upc);
+				$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
+				$songs = DB::table("hasSong")->where("upc", $id)->get();
 
-			// if exists
-			if(isset($leadSinger->name)){
-				$album->leadSinger = $leadSinger->name;
-			} else{
-				$album->leadSinger = "None";
-			}
+				// if exists
+				if(isset($leadSinger->name)){
+					$album->leadSinger = $leadSinger->name;
+				} else{
+					$album->leadSinger = "None";
+				}
 
-			if(isset($songs)){
-				$album->songs = $songs;
-			} else{
-				$album->songs = array();
+				if(isset($songs)){
+					$album->songs = $songs;
+				} else{
+					$album->songs = array();
+				}
 			}
 		}
 		
-		return View::make("customer", array(
-			"albums" => $albums,
-		));
+		return View::make("customer");
 	}
 
 	public function getItems(){
@@ -167,6 +167,10 @@ class CustomerController extends BaseController {
 
 		$albums = file_get_contents("php://input");
 		$albums = json_decode($album, true);
+
+		DB::transaction(function(){
+
+		});
 
 		return "Successfully purchased items";
 
