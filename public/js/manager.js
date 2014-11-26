@@ -38,6 +38,9 @@ app.controller("addAlbumController", function($scope, $http){
 		// send the album object to server
 		$http.post("addAlbum", album).success(function(response){
 			console.log("RESPONSE: " + response);
+			setMessage(response);
+		}).error(function(response){
+			setMessage(response);
 		});
 	},
 
