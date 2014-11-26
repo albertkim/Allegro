@@ -1,5 +1,4 @@
 // This file will be loaded alongside the Customer page
-var app = angular.module("Allegro", []);
 
 $("#customerMenu").addClass("active");
 

@@ -36,8 +36,19 @@ app.controller("itemsController", function($scope, $http, cartItems){
 app.controller("cartController", function($scope, $http, cartItems){
 
 	$scope.buy = function(){
-		$http.post("buyItems", cartItems).success(function(response){
+
+		// create the order object
+		var order = {
+			card_num: "1234",
+			expiryDate: "2014-09-27",
+			deliveredDate: "2014-09-30",
+			items: cartItems
+		};
+
+		$http.post("buyItems", order).success(function(response){
 			setMessage(response);
+			// clear cart after purchase
+			cartItems = [];
 		}).error(function(response){
 			setMessage(response);
 		});

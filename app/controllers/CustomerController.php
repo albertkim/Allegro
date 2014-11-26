@@ -128,10 +128,26 @@ class CustomerController extends BaseController {
 	}
 
 	public function buyItems(){
-		$albums = file_get_contents("php://input");
-		$albums = json_decode($album, true);
+		$order = file_get_contents("php://input");
+		$order = json_decode($order, true);
 
-		DB::transaction(function(){
+		DB::transaction(function() use ($order){
+
+			$orderId = DB::table("Orders")->insertGetId(array(
+				"cid" => Auth::user()->id,
+				"date" => date('Y/m/d H:i:s'),
+				"card_num" => $order["card_num"],
+				"expiryDate" => DateTime::createFromFormat('Y-m-d', $order["expiryDate"]),
+				"deliveredDate" => DateTime::createFromFormat('Y-m-d', $order["deliveredDate"])
+			));
+
+			foreach($order["items"] as $item){
+				DB::table("PurchaseItem")->insert(array(
+					"receiptId" => $orderId,
+					"upc" => $item["upc"],
+					"quantity" => $item["quantity"]
+				));
+			}
 
 		});
 

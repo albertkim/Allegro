@@ -23,6 +23,8 @@ Route::get('getItems', "CustomerController@getItems");
 
 Route::get('searchItem', "CustomerController@searchItem");
 
+Route::post('buyItems', "CustomerController@buyItems");
+
 // Clerk business logic
 
 Route::get('clerk', "ClerkController@get");

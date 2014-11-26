@@ -10,6 +10,10 @@ UNIQUE(username),
 PRIMARY KEY (id)
 );
 
+INSERT INTO CUSTOMER (username, password, name, address, phone) VALUES (
+'user', '$2y$10$3/W/9/2YMvbIC/KcaUTH2.azeh8CtH.08bKu8Bge7DuJKmnJrOvlS', 'Albert', 'street', '911'
+);
+
 CREATE TABLE Item
 (upc INT NOT NULL AUTO_INCREMENT,
 title VARCHAR(100),
@@ -47,22 +51,22 @@ ON DELETE CASCADE
 ON UPDATE CASCADE;
 
 CREATE TABLE Orders (
-receiptId INT AUTO_INCREMENT,
+id INT NOT NULL AUTO_INCREMENT,
 date DATE,
-id INT NOT NULL,
+cid INT NOT NULL,
 card_num INT,
 expiryDate DATE,
 expectedDate DATE,
 deliveredDate DATE,
-PRIMARY KEY (receiptId)
+PRIMARY KEY (id)
 );
 
 ALTER TABLE Orders
-ADD FOREIGN KEY (id)
+ADD FOREIGN KEY (cid)
 REFERENCES Customer(id);
 
 CREATE TABLE PurchaseItem
-(receiptId INT,
+(receiptId INT NOT NULL,
 upc INT NOT NULL,
 quantity INT,
 PRIMARY KEY (receiptId, upc)
