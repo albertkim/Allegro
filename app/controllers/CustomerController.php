@@ -45,4 +45,120 @@ class CustomerController extends BaseController {
 		));
 	}
 
+	public function searchItem(){
+
+		// only category
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('category', $category)
+								->get();
+
+				
+				checkItemExist($item);
+
+		});
+
+		//only title
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('title', $title)
+								->get();
+
+				checkItemExist($item);
+		});
+
+		//only leading singer
+
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+
+			$upc = var_dump($singer->upc);
+
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->get();
+
+				
+				checkItemExist($item);
+		});
+
+		// category and title
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('title', $title)
+								->where('category', $category)
+								->get();
+
+				
+				checkItemExist($item);
+		});
+
+		// category and singer
+
+		DB::transaction(function(){
+						$item = DB::table('item')
+								->where('category', $category)
+								->get();
+
+				checkItemExist($item);	
+		});
+
+		// title and singer
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+
+					$upc = var_dump($singer->upc);
+
+
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->where('title', $title)
+								->get();
+
+				checkItemExist($item);
+		});
+
+		// category, title, and singer
+
+		DB::transaction(function(){
+						$singer = DB::table('leadsinger')
+								->where('name', $singer)
+								->get();
+
+					$upc = var_dump($singer->upc);
+
+						$item = DB::table('item')
+								->where('upc', $upc)
+								->where('title', $title)
+								->where('category', $category)
+								->get();
+
+				checkItemExist($item);
+		});
+	}
+
+	public function checkItemExist($item){
+		if (count($item) > 0) {
+			checkStock($item);
+		}
+		else {
+			//item does not exist message
+		}
+	}
+
+	public function checkStock($item){
+
+		$stock = var_dump($item->stock);
+
+
+
+	}
+
 }
