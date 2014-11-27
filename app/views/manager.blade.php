@@ -84,8 +84,11 @@
 		<hr>
 	  <!-- <form> -->
 	  <div class="form-group">
-	      <label>Type:</label>
-	      <input class="form-control" ng-model="type" name="type" id="type" placeholder="CD or DVD">
+	      <label>Type: </label>
+	      <select ng-model="type" name="type" id="type">
+<option value="CD">CD</option>
+<option value="DVD">DVD</option>
+</select>
 	    </div>
 	    <div class="form-group">
 	      <label>Album Title:</label>
@@ -96,8 +99,16 @@
 	      <input class="form-control" ng-model="artist" id="artist" placeholder="Justin Bieber">
 	    </div>
 	    <div class="form-group">
-	      <label>Genre</label>
-	      <input class="form-control" ng-model="category" name="category" id="category" placeholder="Heavy Metal">
+	      <label>Genre: </label>
+	      <select ng-model="category" name="category" id="category">
+<option value="Rock">Rock</option>
+<option value="Pop">Pop</option>
+<option value="Rap">Rap</option>
+<option value="Country">Country</option>
+<option value="Classical">Classical</option>
+<option value="New Age">New Age</option>
+<option value="Instrumental">Instrumental</option>
+</select>
 	    </div>
 	    <div class="form-group">
 	      <label>Year</label>
