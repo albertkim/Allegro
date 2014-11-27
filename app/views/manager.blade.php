@@ -4,8 +4,11 @@
 
 <div class="jumbotron text-center" style="background-color: white">
 	<div class="container">
-		<h1 style="color: #FF8000">Hello Boss.</h1>
-		<p style="color: #8A4B08">Welcome back. Let's do our job.</p>
+		<h1 style="color: #FF8000">Hello Boss. </h1>
+		<p style="color: #8A4B08">Welcome back. Let's do our job. </p>
+		{{ HTML::image('http://polesworthcarnival.co.uk/wp-content/uploads/2012/04/106376-3d-glossy-orange-orb-icon-social-media-logos-myspace-logo.png', 'boss', array('height' => 150))}}
+
+
 	</div>
 </div>
 	
