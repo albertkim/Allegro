@@ -112,4 +112,21 @@ class ManagerController extends BaseController {
 		return json_encode($dailyItems);
 	}
 
+	public function getUndeliveredOrders(){
+		$undeliveredItems = DB::table("orders")->where("deliveredDate", NULL)->get();
+		return json_encode($undeliveredItems);
+	}
+
+	public function setDeliveryDate(){
+		$date = Input::get("date");
+		$id = Input::get("id");
+		try{
+			DB::table("orders")->where("id", $id)->update(array("deliveredDate" => $date));
+			return "Delivery date successfully set";
+		} catch(exception $e){
+			log::error($e);
+			return "Delivery date could not be set due to an error";
+		}
+	}
+
 }

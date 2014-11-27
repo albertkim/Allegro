@@ -56,3 +56,7 @@ Route::get('getTopItems', "ManagerController@getTopItems");
 Route::post('getDailyReport', "ManagerController@getDailyReport");
 
 Route::post('getTopItemsByDate', "ManagerController@getTopItemsByDate");
+
+Route::get('getUndeliveredOrders', "ManagerController@getUndeliveredOrders");
+
+Route::post('setDeliveryDate', "ManagerController@setDeliveryDate");

@@ -36,6 +36,7 @@
 					</tr>
 				</table>
 			</div>
+
 		</div> <!-- row -->
 
 		<div class="row" ng-controller="dailyReportController", ng-init="dailyReportItems=[]">
@@ -73,10 +74,32 @@
 				</table>
 			</div>
 		</div> <!-- row -->
+
+		<div class="row">
+			<div class="col-lg-8" ng-controller="deliveryController" ng-init="undeliveredOrders=[]; deliveryDates=[]">
+				<h2>Set delivery dates</h2>
+				<br>
+				<table class="table">
+					<tr>
+						<th>Order ID</th>
+						<th>Expected Date</th>
+						<th>Delivery Date</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="order in undeliveredOrders">
+						<td>@{{ order.id }}</td>
+						<td>@{{ order.expectedDate }}</td>
+						<td><input ng-model="deliveryDate" placeholder="YYYY-MM-DD"></input></td>
+						<td><button class="btn btn-secondary" ng-click="setDeliveryDate($index)">Set delivery date</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
 	</div>
 
 	<div class="col-lg-4" ng-controller="addAlbumController" ng-init="songs=[]">
-		<h2>Add an album</h2>
+		<h2>Set delivery</h2>
 		<hr>
 		<button id="addAlbum" class="btn btn-primary" ng-click="addAllSongs()">Auto-populate</button>
 		<hr>
