@@ -33,7 +33,15 @@
 	}
 	?>
 
-	<section id="demo" style="position: relative; width: 100%">
+<?php
+if (!Auth::check())
+{
+    // The user is logged in...
+	echo("<h4><b>Please login to purchase items.</b></h4>");
+}
+?>
+
+<section id="demo" style="position: relative; width: 100%" ng-controller="itemsController" ng-init="albums=[]">
 		
 		<article class="white-panel" ng-repeat="x in albums" style="position: absolute; border-style: solid; border-width: 1px; padding: 10px">
 			<h1><a href="#">Album: @{{ x.title }}</a></h1>

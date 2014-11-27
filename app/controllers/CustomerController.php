@@ -86,13 +86,8 @@ class CustomerController extends BaseController {
 
 	public function searchItem() {
 
-
-		$searchInfo = array(
-			'category' => Input::get('categoryInput'),
-			'title'    => Input::get('titleInput'),
-			'artist'   => Input::get('artistInput'),
-
-		);
+		$searchInfo = file_get_contents("php://input");
+		$searchInfo = json_decode($searchInfo, true);
 
 		//check if artist is filled out
 		if ($searchInfo['artist'] != "") {

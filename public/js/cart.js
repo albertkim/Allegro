@@ -30,13 +30,23 @@ app.controller("itemsController", function($scope, $http, cartItems){
 
 	$scope.search = function(){
 		var category = $scope.categoryInput;
+		if (category == undefined){
+			category = null;
+		}
 		var title = $scope.titleInput;
+		if (title == undefined){
+			title = null;
+		}
 		var artist = $scope.artistInput;
+		if (artist == undefined){
+			artist = null;
+		}
 		var request = {
 			category: category,
 			title: title,
 			artist: artist
-		}
+		};
+		console.log(request);
 		$http.post("searchItem", request).success(function(response){
 			console.log(response);
 			$scope.albums = response;
