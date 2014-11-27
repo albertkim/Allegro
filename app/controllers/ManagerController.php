@@ -84,11 +84,10 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItemsByDate(){
-		log::info("POST getTopItemsByDate");
 		$date = Input::get("date");
 		$number = Input::get("number");
 
-		$topItems = DB::select("SELECT i.UPC, i.category i.price, i.title, i.company, i.stock, SUM(PI.QUANTITY) AS sum
+		$topItems = DB::select("SELECT i.category, i.title, i.company, i.stock, SUM(PI.QUANTITY) AS sum
 						FROM Item i, PurchaseItem pi, Orders o
 						WHERE o.date = ? AND o.id = pi.receiptID AND pi.upc = i.upc
 						GROUP BY i.UPC
@@ -100,10 +99,17 @@ class ManagerController extends BaseController {
 		return json_encode($topItems);
 	}
 
-	public function getDailySalesReport(){
+	public function getDailyReport(){
+		$date = Input::get("date");
+		log::info($date);
+		$dailyItems = DB::select("SELECT i.upc, i.category, i.price, SUM(PI.QUANTITY) AS sum
+						FROM Item i, PurchaseItem pi, Orders o
+						WHERE o.date = ? AND o.id = pi.receiptID AND pi.upc = i.upc
+						GROUP BY i.UPC
+						DESC", array($date));
 
-
-
+		log::info($dailyItems);
+		return json_encode($dailyItems);
 	}
 
 }
