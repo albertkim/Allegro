@@ -50,7 +50,7 @@ if (!Auth::check())
 			Song: @{{ song.title }}
 		</p>
 		<label> Quantity: </label>	
-		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0'></input>
+		<input class='quantity' name='quantity' id='quantity' placeholder='0'></input>
 		<button class='btn btn-primary pull-right' ng-click='addItemToCart($index)'>Add to cart</button>
 		
 	</article>
