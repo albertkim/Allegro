@@ -112,11 +112,7 @@ function isNormalInteger(str) {
     var n = ~~Number(str);
     return String(n) === str && n >= 0;
 }
-function checkDate(str) {
-    var matches = str.match(/(\d{1,2})[- \/](\d{1,2})[- \/](\d{4})/);
-    if (!matches) return false;
-    return true;
-}
+
 
 app.controller("topItemsController", function($scope, $http){
 
@@ -126,8 +122,8 @@ app.controller("topItemsController", function($scope, $http){
 			setMessage("Please fill out all fields.");
 			return;
 		}
-		if(checkDate($scope.topItemsDate)){
-			setMessage("Please follow the date format.");
+		if(!isNormalInteger($scope.numTopItems)){
+			setMessage("Number of elements must be an integer");
 			return;
 		}
 
