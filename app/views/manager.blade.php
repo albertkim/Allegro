@@ -84,7 +84,7 @@
 				<br>
 				<table class="table">
 					<tr>
-						<th>Order ID</th>
+						<th>Receipt ID</th>
 						<th>Expected Date</th>
 						<th>Delivery Date</th>
 						<th></th>

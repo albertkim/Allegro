@@ -35,14 +35,12 @@ if (!Auth::check())
 ?>
 
 <section id="demo" style="position: relative; width: 100%" ng-controller="itemsController" ng-init="albums=[]">
-
-
 	
 	<article class="white-panel" ng-repeat="x in albums" style="position: absolute; border-style: solid; border-width: 1px; padding: 10px">
 		<h1><a href="#">Album: @{{ x.title }}</a></h1>
 		<hr>
 		<h2>Artist: @{{ x.leadSinger }}</h2>
-		<h4>In Stock: @{{ x.stock }}</h4>
+		<h4><h4>In Stock: @{{ x.stock }}</h4></h4>
 		<h5>Category: @{{ x.category }}</h5>
 		<h5>Year: @{{ x.year }}</h5>
 		<hr>
@@ -50,7 +48,13 @@ if (!Auth::check())
 			Song: @{{ song.title }}
 		</p>
 		<label> Quantity: </label>	
+<<<<<<< HEAD
 		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0' style='box-shadow: 2px 2px 1px #888888	'></input>
+||||||| merged common ancestors
+		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0' style='box-shadow: 2px 2px 1px #888888'></input>
+=======
+		<input class='quantity' name='quantity' id='quantity' placeholder='0'></input>
+>>>>>>> 3de824d1764ec757d136156bf5ab48de5e719db1
 		<button class='btn btn-primary pull-right' ng-click='addItemToCart($index)'>Add to cart</button>
 		
 	</article>

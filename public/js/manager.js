@@ -149,14 +149,6 @@ app.controller("topItemsController", function($scope, $http){
 	init();
 });
 
-app.controller("topItemsByDateController", function($scope, $http){
-	var init = function(){
-
-	};
-
-	init();
-});
-
 app.controller("dailyReportController", function($scope, $http){
 
 	$scope.getDailyReport = function(){

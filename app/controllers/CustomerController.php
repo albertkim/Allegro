@@ -164,6 +164,12 @@ class CustomerController extends BaseController {
 				));
 			}
 
+			foreach($order["items"] as $item){
+				$quantity = DB::table("Item")->where("upc", $item["upc"])->pluck("stock");
+				$newQuantity = $quantity - $item["quantity"];
+				DB::table("Item")->where("upc", $item["upc"])->update(array("stock" => $newQuantity));
+			}
+
 		});
 
 		return "Successfully purchased items";

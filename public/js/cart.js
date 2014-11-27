@@ -11,12 +11,19 @@ app.controller("itemsController", function($scope, $http, cartItems){
 	$scope.addItemToCart = function(index){
 		var album = $scope.albums[index];
 		console.log(album);
+
+		var quantity = $(".quantity:eq(" + index + ")").val();
+		if(quantity > album.stock){
+			setMessage("You cannot order more than what's in stock");
+			return;
+		}
+
 		if(_.findWhere(cartItems, album) == undefined){
-			album.quantity = 1;
+			album.quantity = quantity;
 			cartItems.push(album);
 			$("#cart").show();
 		} else{
-			_.findWhere(cartItems, album).quantity++;
+			_.findWhere(cartItems, album).quantity = quantity;
 		}
 		
 	};
@@ -77,7 +84,7 @@ app.controller("purchaseController", function($scope, $http, cartItems){
 			// clear cart after purchase
 			cartItems = [];
 			$scope.cartItems = [];
-			init();
+			location.reload();
 		}).error(function(response){
 			setMessage(response);
 		});
