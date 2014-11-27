@@ -11,12 +11,18 @@ app.controller("addAlbumController", function($scope, $http){
 
 	$scope.addAlbum = function(){
 		// form validation
+		
+		if($scope.title == null || $scope.artist == null || $scope.type == null || $scope.category == null || $scope.year == null || $scope.price == null || $scope.stock == null){
+			setMessage("All fields must be filled out");
+			return;
+		}
+		
 		if(!isNormalInteger($scope.year)){
 			setMessage("Year must be an integer");
 			return;
 		}
-		if(!isNormalInteger($scope.price)){
-			setMessage("Price must be an integer");
+		if(isNaN($scope.price)){
+			setMessage("Price must be an number");
 			return;
 		}
 		if(!isNormalInteger($scope.stock)){
@@ -107,9 +113,20 @@ function isNormalInteger(str) {
     return String(n) === str && n >= 0;
 }
 
+
 app.controller("topItemsController", function($scope, $http){
 
 	$scope.getTopItemsByDate = function(){
+		// Validate
+		if($scope.topItemsDate == null || $scope.numTopItems == null){
+			setMessage("Please fill out all fields.");
+			return;
+		}
+		if(!isNormalInteger($scope.numTopItems)){
+			setMessage("Number of elements must be an integer");
+			return;
+		}
+
 		var request = {
 			date: $scope.topItemsDate,
 			number: $scope.numTopItems

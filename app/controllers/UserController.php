@@ -28,7 +28,14 @@ class UserController extends BaseController {
 		$name = Input::get("name");
 		$address = Input::get("address");
 		$phone_number = Input::get("phoneNumber");
-		
+
+		// Validate
+		if(empty($username) || empty($password) || empty($confirmPassword) || empty($name) || empty($address) || empty($phone_number)){
+			return View::make("register", array("message" => "Please fill in all fields before registering"));
+		}
+		if(!is_numeric($phone_number) || !(strlen($phone_number) == 6)){
+			return View::make("register", array("message" => "Please enter a valid phone number (ie. 6043219352)"));
+		}
 
 		log::info("Received: ");
 		log::info($username);
@@ -71,6 +78,10 @@ class UserController extends BaseController {
 		log::info("POST login");
 		$username = Input::get("username");
 		$password = Input::get("password");
+		// Validate
+		if(empty($username) || empty($password)){
+			return View::make("hello", array("message" => "Please fill in all fields before logging in"));
+		}
 
 		if(Auth::attempt(array("username" => $username, "password" => $password))){
 			return View::make("customer", array("user" => $username, "message" => "Successfully logged in"));
