@@ -1,9 +1,9 @@
 @extends('partials.master');
 
 @section('content')
-<div class="jumbotron text-center" style="background-color: white">
+<div class="jumbotron text-center" style="background-color: white" style="border-style: dotted orange" >
 	<div class="container">
-		<h1 style="color: #FF8000">Explore!</h1>
+		<h1 style="color: #FF8000" >Explore!</h1>
 		<p style="color: #8A4B08">Find your favorite songs here.</p>
 		{{ HTML::image('https://lh5.ggpht.com/qy9vdQuksSTG3brgJe3OaND7XtxNquLxC2n2U6E_1UDafqLWj_DSCvlXZr_6RRmQcns=w300', 'basket', array('height' => 150))}}
 	</div>	
@@ -50,7 +50,7 @@ if (!Auth::check())
 			Song: @{{ song.title }}
 		</p>
 		<label> Quantity: </label>	
-		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0' style='box-shadow: 2px 2px 1px #888888'></input>
+		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0' style='box-shadow: 2px 2px 1px #888888	'></input>
 		<button class='btn btn-primary pull-right' ng-click='addItemToCart($index)'>Add to cart</button>
 		
 	</article>
