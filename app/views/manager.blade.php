@@ -79,7 +79,7 @@
 		</div> <!-- row -->
 
 		<div class="row">
-			<div class="col-lg-8" ng-controller="deliveryController" ng-init="undeliveredOrders=[]; deliveryDates=[]" style="box-shadow: 5px 5px 5px #888888">
+			<div class="col-lg-12" ng-controller="deliveryController" ng-init="undeliveredOrders=[]; deliveryDates=[]" style="box-shadow: 5px 5px 5px #888888">
 				<h2 style="color: #8A4B08">Set delivery dates</h2>
 				<br>
 				<table class="table">

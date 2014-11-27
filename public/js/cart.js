@@ -28,6 +28,22 @@ app.controller("itemsController", function($scope, $http, cartItems){
 		
 	};
 
+	$scope.search = function(){
+		var category = $scope.categoryInput;
+		var title = $scope.titleInput;
+		var artist = $scope.artistInput;
+		var request = {
+			category: category,
+			title: title,
+			artist: artist
+		}
+		$http.post("searchItem", request).success(function(response){
+			console.log(response);
+			$scope.albums = response;
+		});
+
+	}
+
 	var init = function(){
 		$http.get("getItems").success(function(response){
 			console.log(response);

@@ -88,9 +88,9 @@ class CustomerController extends BaseController {
 
 
 		$searchInfo = array(
-						'category' => Input::get('categoryInput'),
-						'title'    => Input::get('titleInput'),
-						'artist'   => Input::get('artistInput'),
+			'category' => Input::get('categoryInput'),
+			'title'    => Input::get('titleInput'),
+			'artist'   => Input::get('artistInput'),
 
 		);
 
