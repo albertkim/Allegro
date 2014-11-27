@@ -193,7 +193,7 @@ app.controller("deliveryController", function($scope, $http){
 
 	$scope.setDeliveryDate = function(index){
 		console.log("Setting delivery");
-		var date = $scope.deliveryDate;
+		var date = $(".deliveryDate:eq(" + index + ")").val();
 		var order = $scope.undeliveredOrders[index];
 		var request = {
 			date: date,
