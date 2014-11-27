@@ -71,7 +71,7 @@ REFERENCES Item(upc);
 CREATE TABLE  Return_Back
 (retid INT,
 date DATE,
-receptId INT,
+receiptId INT,
 PRIMARY KEY(retid)
 );
 

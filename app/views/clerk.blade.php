@@ -2,15 +2,15 @@
 
 @section('content')
 
-<div class="jumbotron text-center" style="background-color: black">
+<div class="jumbotron text-center" style="background-color: white">
 	<div class="container">
-		<h1 style="color: #FFFFFF">Not satisfied?</h1>
-		<p style="color: #C0C0C0">No problem! Manage refunds of items here.</p>
+		<h1 style="color: #FF8000">Not satisfied?</h1>
+		<p style="color: #8A4B08">No problem! Manage refunds of items here.</p>
 	</div>
 </div>
 
 <form role="form" class="col-lg-4" action="checkRefund" method="POST">
-	<h2>Refund Items</h2>
+	<h2 style='color: #8A4B08'>Refund Items</h2>
   <div class="form-group">
     <label>Receipt Id:</label>
     <input class="form-control" name="receiptId" id="receiptId" placeholder="000000">
