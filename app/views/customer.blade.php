@@ -1,39 +1,29 @@
 @extends('partials.master');
 
 @section('content')
-<div class="jumbotron text-center" style="background-color: black">
+<div class="jumbotron text-center" style="background-color: white">
 	<div class="container">
-		<h1 style="color: #FFFFFF">Explore!</h1>
-		<p style="color: #C0C0C0">Find your favorite songs here</p>
+		<h1 style="color: #FF8000">Explore!</h1>
+		<p style="color: #8A4B08">Find your favorite songs here</p>
+		{{ HTML::image('https://lh5.ggpht.com/qy9vdQuksSTG3brgJe3OaND7XtxNquLxC2n2U6E_1UDafqLWj_DSCvlXZr_6RRmQcns=w300', 'basket', array('height' => 150))}}
 	</div>	
 </div>
 
 {{ Form::open(array('action' => 'CustomerController@searchItem')) }}
-{{ Form::label('searchCaption', 'Search By:') }}
+{{ Form::label('searchCaption', 'Search By:', array('style' => 'color: #8A4B08')) }}
 <br>
-{{ Form::label('category', 'Category:') }}
-{{ Form::text('categoryInput', '', array('placeholder' => 'Rock'))}}
+{{ Form::label('category', 'Category:', array('style' => 'color: #8A4B08')) }}
+{{ Form::text('categoryInput', '', array('placeholder' => 'Rock', 'style' => 'color: #8A4B08'))}}
 
-{{ Form::label('title', 'Title:') }}
-{{ Form::text('titleInput', '', array('placeholder' => 'Album Title'))}}
+{{ Form::label('title', 'Title:', array('style' => 'color: #8A4B08')) }}
+{{ Form::text('titleInput', '', array('placeholder' => 'Album Title', 'style' => 'color: #8A4B08'))}}
 
-{{ Form::label('artist', 'Artist:') }}
-{{ Form::text('artistInput', '', array('placeholder' => 'Justin Bieber'))}}
+{{ Form::label('artist', 'Artist:', array('style' => 'color: #8A4B08')) }}
+{{ Form::text('artistInput', '', array('placeholder' => 'Justin Bieber', 'style' => 'color: #8A4B08'))}}
 
 {{ Form::submit('Search Item', array('class' => 'btn btn-primary'))}}
 {{ Form::close() }}
 
-<!--
-
-<label>Search By: </label><br>
-Category: <input ng-model="category" name="category" id="category" placeholder="Rock">
-Title: <input ng-model="title" name="title" id="title" placeholder="Album Title">
-Artitst: <input ng-model="artist" name="artiest" id="artist" placeholder="Justin Bieber">
-Quantity: <input ng-model="quantity" name="quantity" id="quantity" placeholder="50"> &nbsp;
-
-<button type="submit" id="search" class="btn btn-primary" ng-click="search">Search</button>
-<br><hr>
--->
 
 
 <?php

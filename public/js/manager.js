@@ -188,3 +188,33 @@ app.controller("dailyReportController", function($scope, $http){
 	}
 
 });
+
+app.controller("deliveryController", function($scope, $http){
+
+	$scope.setDeliveryDate = function(index){
+		console.log("Setting delivery");
+		var date = $scope.deliveryDate;
+		var order = $scope.undeliveredOrders[index];
+		var request = {
+			date: date,
+			id: order.id
+		};
+		$http.post("setDeliveryDate", request).success(function(response){
+			console.log(response);
+			$scope.undeliveredOrders.splice(index, 1);
+			setMessage(response);
+		}).error(function(){
+			setMessage("The delivery date could not be set due to an error");
+		});
+	}
+
+	var init = function(){
+		$http.get("getUndeliveredOrders").success(function(response){
+			console.log(response);
+			$scope.undeliveredOrders = response;
+		});
+	}
+
+	init();
+
+});
