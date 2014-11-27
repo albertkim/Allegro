@@ -26,6 +26,14 @@
 
 
 
+<?php
+if (!Auth::check())
+{
+    // The user is logged in...
+	echo("<h4><b>Please login to purchase items.</b></h4>");
+}
+?>
+
 <section id="demo" style="position: relative; width: 100%" ng-controller="itemsController" ng-init="albums=[]">
 
 
@@ -42,8 +50,9 @@
 			Song: @{{ song.title }}
 		</p>
 		<label> Quantity: </label>	
-		<input ng-model="quantity" name="quantity" id="quantity" placeholder=" 0"></input>
-		<button class="btn btn-primary pull-right" ng-click="addItemToCart($index)">Add to cart</button>
+		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0'></input>
+		<button class='btn btn-primary pull-right' ng-click='addItemToCart($index)'>Add to cart</button>
+		
 	</article>
 
 </section>
