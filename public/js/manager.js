@@ -150,6 +150,24 @@ app.controller("dailyReportController", function($scope, $http){
 			console.log(response);
 			$scope.dailyReportItems = response;
 		});
+	},
+
+	$scope.totalUnits = function(){
+    var total = 0;
+    angular.forEach($scope.dailyReportItems, function(item) {
+        total += Number(item.sum);
+    })
+
+    return total;
+	}
+
+	$scope.totalValue = function(){
+    var total = 0;
+    angular.forEach($scope.dailyReportItems, function(item) {
+        total += item.price * item.sum;
+    })
+
+    return total;
 	}
 
 });

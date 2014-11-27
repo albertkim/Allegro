@@ -63,6 +63,13 @@
 						<td>@{{ item.sum }}</td>
 						<td>@{{ item.sum * item.price }}</td>
 					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>Total daily units: @{{ totalUnits() }}</td>
+						<td>Total daily sales:  @{{ totalValue() }}</td>
+					</tr>
 				</table>
 			</div>
 		</div> <!-- row -->
