@@ -89,7 +89,7 @@
 					<tr ng-repeat="order in undeliveredOrders">
 						<td>@{{ order.id }}</td>
 						<td>@{{ order.expectedDate }}</td>
-						<td><input ng-model="deliveryDate" placeholder="YYYY-MM-DD"></input></td>
+						<td><input class="deliveryDate" placeholder="YYYY-MM-DD"></input></td>
 						<td><button class="btn btn-secondary" ng-click="setDeliveryDate($index)">Set delivery date</button></td>
 					</tr>
 				</table>
@@ -107,9 +107,9 @@
 	  <div class="form-group">
 	      <label>Type: </label>
 	      <select ng-model="type" name="type" id="type">
-<option value="CD">CD</option>
-<option value="DVD">DVD</option>
-</select>
+					<option value="CD">CD</option>
+					<option value="DVD">DVD</option>
+				</select>
 	    </div>
 	    <div class="form-group">
 	      <label>Album Title:</label>
@@ -122,14 +122,14 @@
 	    <div class="form-group">
 	      <label>Genre: </label>
 	      <select ng-model="category" name="category" id="category">
-<option value="Rock">Rock</option>
-<option value="Pop">Pop</option>
-<option value="Rap">Rap</option>
-<option value="Country">Country</option>
-<option value="Classical">Classical</option>
-<option value="New Age">New Age</option>
-<option value="Instrumental">Instrumental</option>
-</select>
+					<option value="Rock">Rock</option>
+					<option value="Pop">Pop</option>
+					<option value="Rap">Rap</option>
+					<option value="Country">Country</option>
+					<option value="Classical">Classical</option>
+					<option value="New Age">New Age</option>
+					<option value="Instrumental">Instrumental</option>
+				</select>
 	    </div>
 	    <div class="form-group">
 	      <label>Year</label>
