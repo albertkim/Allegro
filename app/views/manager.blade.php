@@ -2,10 +2,10 @@
 
 @section('content')
 
-<div class="jumbotron text-center" style="background-color: black">
+<div class="jumbotron text-center" style="background-color: white">
 	<div class="container">
-		<h1 style="color: #FFFFFF">Dashboard</h1>
-		<p style="color: #C0C0C0">Manage the status of your store here</p>
+		<h1 style="color: #FF8000">Hello Boss.</h1>
+		<p style="color: #8A4B08">Welcome back. Let's do our job.</p>
 	</div>
 </div>
 	
@@ -13,13 +13,13 @@
 		<div class="row" ng-controller="topItemsController" ng-init="topItems=[]; numTopItemsView=5; topItemsDateView='all time'">
 			<div class="col-lg-12">
 
-		      <label>Select date:</label>
+		      <label> Select date:</label>
 		      <input ng-model="topItemsDate" placeholder="YYYY-MM-DD"></input>
 		      <label>Number of elements:</label>
 		      <input ng-model="numTopItems" placeholder="5"></input>
 		      <button type="submit" class="btn btn-primary" ng-click="getTopItemsByDate()">Get items</button>
 
-				<h2>Top @{{ numTopItemsView }} items for @{{ topItemsDateView }}:</h2>
+				<h2 style="color: #8A4B08">Top @{{ numTopItemsView }} items for @{{ topItemsDateView }}:</h2>
 				<br>
 				<table class="table">
 					<tr>
@@ -40,14 +40,14 @@
 
 		<div class="row" ng-controller="dailyReportController", ng-init="dailyReportItems=[]">
 			<div class="col-lg-12">
-				<h2>Daily Sales Report:</h2>
+				<h2 style="color: #8A4B08">Daily Sales Report:</h2>
 				<hr>
 		    <div class="form-group">
-		      <label>Select date:</label>
+		      <label >Select date:</label>
 		      <input class="form-control" ng-model="dailyReportDate" placeholder="YYYY-MM-DD"></input>
 		    </div>
 		    <button type="submit" class="btn btn-primary" ng-click="getDailyReport()">Get report</button>
-				<h3>Items sold:</h3>
+				<h3 style="color: #8A4B08">Items sold:</h3>
 				<table class="table">
 					<tr>
 						<th>UPC</th>
@@ -76,7 +76,7 @@
 	</div>
 
 	<div class="col-lg-4" ng-controller="addAlbumController" ng-init="songs=[]">
-		<h2>Add an album</h2>
+		<h2 style="color: #8A4B08">Add an album</h2>
 		<hr>
 		<button id="addAlbum" class="btn btn-primary" ng-click="addAllSongs()">Auto-populate</button>
 		<hr>
