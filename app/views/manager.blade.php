@@ -38,17 +38,15 @@
 			</div>
 		</div> <!-- row -->
 
-		<div class="row">
+		<div class="row" ng-controller="dailyReportController", ng-init="dailyReportItems=[]">
 			<div class="col-lg-12">
 				<h2>Daily Sales Report:</h2>
 				<hr>
-			<form class="form-group" action="getDailySalesReport" method="POST">
 		    <div class="form-group">
 		      <label>Select date:</label>
-		      <input class="form-control" id="reportDate" placeholder="YYYY-MM-DD"></input>
+		      <input class="form-control" ng-model="dailyReportDate" placeholder="YYYY-MM-DD"></input>
 		    </div>
-		    <button type="submit" class="btn btn-primary">Get report</button>
-			</form>
+		    <button type="submit" class="btn btn-primary" ng-click="getDailyReport()">Get report</button>
 				<h3>Items sold:</h3>
 				<table class="table">
 					<tr>
@@ -58,19 +56,19 @@
 						<th>Units</th>
 						<th>Total value</th>
 					</tr>
-					<tr>
-						<td>2244</td>
-						<td>Classical</td>
-						<td>10.50</td>
-						<td>10</td>
-						<td>105.00</td>
+					<tr ng-repeat="item in dailyReportItems">
+						<td>@{{ item.upc }}</td>
+						<td>@{{ item.category }}</td>
+						<td>@{{ item.price }}</td>
+						<td>@{{ item.sum }}</td>
+						<td>@{{ item.sum * item.price }}</td>
 					</tr>
 					<tr>
-						<td>2245</td>
-						<td>Rock</td>
-						<td>5.00</td>
-						<td>15</td>
-						<td>20.00</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>Total daily units: @{{ totalUnits() }}</td>
+						<td>Total daily sales:  @{{ totalValue() }}</td>
 					</tr>
 				</table>
 			</div>

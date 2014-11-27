@@ -53,4 +53,6 @@ Route::post('deleteAlbum', "ManagerController@deleteAlbum");
 
 Route::get('getTopItems', "ManagerController@getTopItems");
 
+Route::post('getDailyReport', "ManagerController@getDailyReport");
+
 Route::post('getTopItemsByDate', "ManagerController@getTopItemsByDate");

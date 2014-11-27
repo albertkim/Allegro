@@ -56,7 +56,7 @@ app.controller("addAlbumController", function($scope, $http){
 
 	$scope.deleteSong = function(index){
 		$scope.songs.splice(index, 1);
-	}
+	},
 
 	$scope.addAllSongs = function(){
 		var albums = [
@@ -103,9 +103,10 @@ app.controller("addAlbumController", function($scope, $http){
 				console.log(response);
 			});
 		}
-	}
+		setMessage("Songs added");
+	};
 
-});
+})
 
 function isNormalInteger(str) {
     var n = ~~Number(str);
@@ -158,4 +159,36 @@ app.controller("topItemsByDateController", function($scope, $http){
 	};
 
 	init();
+});
+
+app.controller("dailyReportController", function($scope, $http){
+
+	$scope.getDailyReport = function(){
+		var request = {
+			date: $scope.dailyReportDate
+		}
+		$http.post("getDailyReport", request).success(function(response){
+			console.log(response);
+			$scope.dailyReportItems = response;
+		});
+	},
+
+	$scope.totalUnits = function(){
+    var total = 0;
+    angular.forEach($scope.dailyReportItems, function(item) {
+        total += Number(item.sum);
+    })
+
+    return total;
+	}
+
+	$scope.totalValue = function(){
+    var total = 0;
+    angular.forEach($scope.dailyReportItems, function(item) {
+        total += item.price * item.sum;
+    })
+
+    return total;
+	}
+
 });
