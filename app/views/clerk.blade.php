@@ -6,12 +6,15 @@
 	<div class="container">
 		<h1 style="color: #FF8000">Not satisfied?</h1>
 		<p style="color: #8A4B08">No problem! Manage refunds of items here.</p>
+		{{ HTML::image('http://www.tutorialsscripts.com/free-icons/download-icons/orange-download-icon-256-x-256.gif', 'refund', array('height' => 150))}}
+
+		
 	</div>
 </div>
 
 <form role="form" class="col-lg-4" action="checkRefund" method="POST">
 	<h2 style='color: #8A4B08'>Refund Items</h2>
-  <div class="form-group">
+  <div class="form-group" style="box-shadow: 5px 5px 5px #888888">
     <label>Receipt Id:</label>
     <input class="form-control" name="receiptId" id="receiptId" placeholder="000000">
   </div>

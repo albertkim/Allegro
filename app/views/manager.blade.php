@@ -4,14 +4,17 @@
 
 <div class="jumbotron text-center" style="background-color: white">
 	<div class="container">
-		<h1 style="color: #FF8000">Hello Boss.</h1>
-		<p style="color: #8A4B08">Welcome back. Let's do our job.</p>
+		<h1 style="color: #FF8000">Hello Boss. </h1>
+		<p style="color: #8A4B08">Welcome back. Let's do our job. </p>
+		{{ HTML::image('http://macombcountymi.gov/CLERKSOFFICE/images/icon_document.png', 'boss', array('height' => 150))}}
+
+
 	</div>
 </div>
 	
 	<div class="col-lg-8">
 		<div class="row" ng-controller="topItemsController" ng-init="topItems=[]; numTopItemsView=5; topItemsDateView='all time'">
-			<div class="col-lg-12">
+			<div class="col-lg-12" style="box-shadow: 5px 5px 5px #888888">
 
 		      <label> Select date:</label>
 		      <input ng-model="topItemsDate" placeholder="YYYY-MM-DD"></input>
@@ -39,7 +42,7 @@
 
 		</div> <!-- row -->
 
-		<div class="row" ng-controller="dailyReportController", ng-init="dailyReportItems=[]">
+		<div class="row" ng-controller="dailyReportController", ng-init="dailyReportItems=[]" style="box-shadow: 5px 5px 5px #888888">
 			<div class="col-lg-12">
 				<h2 style="color: #8A4B08">Daily Sales Report:</h2>
 				<hr>
@@ -76,8 +79,8 @@
 		</div> <!-- row -->
 
 		<div class="row">
-			<div class="col-lg-8" ng-controller="deliveryController" ng-init="undeliveredOrders=[]; deliveryDates=[]">
-				<h2>Set delivery dates</h2>
+			<div class="col-lg-8" ng-controller="deliveryController" ng-init="undeliveredOrders=[]; deliveryDates=[]" style="box-shadow: 5px 5px 5px #888888">
+				<h2 style="color: #8A4B08">Set delivery dates</h2>
 				<br>
 				<table class="table">
 					<tr>
@@ -98,7 +101,7 @@
 
 	</div>
 
-	<div class="col-lg-4" ng-controller="addAlbumController" ng-init="songs=[]">
+	<div class="col-lg-4" ng-controller="addAlbumController" ng-init="songs=[]" style="box-shadow: 5px 5px 5px #888888">
 		<h2 style="color: #8A4B08">Add an album</h2>
 		<hr>
 		<button id="addAlbum" class="btn btn-primary" ng-click="addAllSongs()">Auto-populate</button>

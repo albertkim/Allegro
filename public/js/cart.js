@@ -84,7 +84,7 @@ app.controller("purchaseController", function($scope, $http, cartItems){
 			// clear cart after purchase
 			cartItems = [];
 			$scope.cartItems = [];
-			init();
+			location.reload();
 		}).error(function(response){
 			setMessage(response);
 		});
