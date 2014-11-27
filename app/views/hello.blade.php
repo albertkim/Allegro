@@ -14,14 +14,6 @@
 	<h2 class="text-center" style="color: 8A4B08" >The best online music store in Vancouver</h2></p>
 	<p class="text-center" style="color: 8A4B08">See what has the music industry trembling in fear</p>
 
-	<hr>
 
-	<p><h2 class="text-center" style="color: 8A4B08">Make purchases in an instant</h2></p>
-	<p class="text-center" style="color: 8A4B08">It's just that easy</p>
-
-	<hr>
-
-	<p><h1 class="text-center" style="color: 8A4B08">Try it now!</h1></p>
-	<p><h2 class="text-center"style="color: 8A4B08">Select an option from the top-right corner to get started</h2></p>
 
 @stop
