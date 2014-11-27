@@ -72,8 +72,13 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItems(){
-		$topItems = DB::select("SELECT I.TITLE, P.UPC, SUM(QUANTITY) AS SUM FROM PURCHASEITEM P, ITEM I WHERE P.UPC = I.UPC 
-			GROUP BY P.UPC ORDER BY SUM(P.QUANTITY) DESC LIMIT 5");
+		$topItems = DB::select("SELECT I.TITLE AS title, P.UPC, SUM(QUANTITY) AS sum 
+			FROM PURCHASEITEM P, ITEM I 
+			WHERE P.UPC = I.UPC 
+			GROUP BY P.UPC 
+			ORDER BY SUM(P.QUANTITY) 
+			DESC 
+			LIMIT 5");
 
 		return json_encode($topItems);
 	}
@@ -82,16 +87,23 @@ class ManagerController extends BaseController {
 		log::info("POST getTopItemsByDate");
 		$date = Input::get("date");
 		$number = Input::get("number");
-		return View::make("manager", array("message" => $date));
 
+		$topItems = DB::select("SELECT i.title, i.company, i.stock, SUM(PI.QUANTITY) AS sum
+						FROM Item i, PurchaseItem pi, Orders o
+						WHERE o.date = ? AND o.id = pi.receiptID AND pi.upc = i.upc
+						GROUP BY i.UPC
+						ORDER BY SUM(PI.QUANTITY)
+						DESC
+						LIMIT ?", array($date, $number));
+
+		log::info($topItems);
+		return json_encode($topItems);
 	}
 
 	public function getDailySalesReport(){
+
+
+
 	}
-
-
-
-
-
 
 }

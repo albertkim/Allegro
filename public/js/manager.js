@@ -107,6 +107,20 @@ function isNormalInteger(str) {
 }
 
 app.controller("topItemsController", function($scope, $http){
+
+	$scope.getTopItemsByDate = function(){
+		var request = {
+			date: $scope.topItemsDate,
+			number: $scope.numTopItems
+		};
+		$http.post("getTopItemsByDate", request).success(function(response){
+			console.log(response);
+			$scope.topItems = response;
+			$scope.topItemsDateView = $scope.topItemsDate;
+			$scope.numTopItemsView = $scope.numTopItems;
+		});
+	}
+
 	var init = function(){
 		$http.get("getTopItems").success(function(response){
 			console.log(response);
@@ -118,5 +132,9 @@ app.controller("topItemsController", function($scope, $http){
 });
 
 app.controller("topItemsByDateController", function($scope, $http){
-	
+	var init = function(){
+
+	};
+
+	init();
 });

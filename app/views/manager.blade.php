@@ -10,18 +10,25 @@
 </div>
 	
 	<div class="col-lg-8">
-		<div class="row">
+		<div class="row" ng-controller="topItemsController" ng-init="topItems=[]; numTopItemsView=5; topItemsDateView='all time'">
 			<div class="col-lg-12">
-				<h2>Top 5 items:</h2>
+
+		      <label>Select date:</label>
+		      <input ng-model="topItemsDate" placeholder="YYYY-MM-DD"></input>
+		      <label>Numer of elements:</label>
+		      <input ng-model="numTopItems" placeholder="5"></input>
+		      <button type="submit" class="btn btn-primary" ng-click="getTopItemsByDate()">Get items</button>
+
+				<h2>Top @{{ numTopItemsView }} items for @{{ topItemsDateView }}:</h2>
 				<br>
-				<table class="table" ng-controller="topItemsController" ng-init="topItems=[]">
+				<table class="table">
 					<tr>
 						<th>Album title</th>
 						<th>Times sold</th>
 					</tr>
 					<tr ng-repeat="item in topItems">
-						<td>@{{ item.TITLE }}</td>
-						<td>@{{ item.SUM }}</td>
+						<td>@{{ item.title }}</td>
+						<td>@{{ item.sum }}</td>
 					</tr>
 				</table>
 			</div>
