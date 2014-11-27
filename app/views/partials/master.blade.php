@@ -46,9 +46,6 @@
           </div>
 		      <div class="nav navbar-form navbar-right">
 		      	<form role="form" action="logout" method="POST">
-			      	<div class="form-group" hidden>
-			      		<input id="usernameInput" name="username" type="text" class="form-control">
-			      	</div>
 			      	<button id="logoutButton" type="submit" class="btn btn-default">Logout</button>
 		      	</form>
 		      </div>

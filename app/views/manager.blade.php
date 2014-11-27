@@ -83,6 +83,10 @@
 		<button id="addAlbum" class="btn btn-primary" ng-click="addAllSongs()">Auto-populate</button>
 		<hr>
 	  <!-- <form> -->
+	  <div class="form-group">
+	      <label>Type:</label>
+	      <input class="form-control" ng-model="type" name="type" id="type" placeholder="CD or DVD">
+	    </div>
 	    <div class="form-group">
 	      <label>Album Title:</label>
 	      <input class="form-control" ng-model="title" name="title" id="title" placeholder="Baby">

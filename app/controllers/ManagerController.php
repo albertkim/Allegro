@@ -50,7 +50,7 @@ class ManagerController extends BaseController {
 			);
 
 			if(!$leadSinger){
-				return("Could add lead singer");
+				return("Could not add lead singer");
 			}
 
 			// add each song relation to album
