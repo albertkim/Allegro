@@ -4,7 +4,7 @@
 <div class="jumbotron text-center" style="background-color: white">
 	<div class="container">
 		<h1 style="color: #FF8000">Explore!</h1>
-		<p style="color: #8A4B08">Find your favorite songs here</p>
+		<p style="color: #8A4B08">Find your favorite songs here.</p>
 		{{ HTML::image('https://lh5.ggpht.com/qy9vdQuksSTG3brgJe3OaND7XtxNquLxC2n2U6E_1UDafqLWj_DSCvlXZr_6RRmQcns=w300', 'basket', array('height' => 150))}}
 	</div>	
 </div>
@@ -13,13 +13,13 @@
 {{ Form::label('searchCaption', 'Search By:', array('style' => 'color: #8A4B08')) }}
 <br>
 {{ Form::label('category', 'Category:', array('style' => 'color: #8A4B08')) }}
-{{ Form::text('categoryInput', '', array('placeholder' => 'Rock', 'style' => 'color: #8A4B08'))}}
+{{ Form::text('categoryInput', '', array('placeholder' => 'Rock', 'style' => 'color: #8A4B08', 'style' => 'box-shadow: 2px 2px 1px #888888'))}}
 
 {{ Form::label('title', 'Title:', array('style' => 'color: #8A4B08')) }}
-{{ Form::text('titleInput', '', array('placeholder' => 'Album Title', 'style' => 'color: #8A4B08'))}}
+{{ Form::text('titleInput', '', array('placeholder' => 'Album Title', 'style' => 'color: #8A4B08', 'style' => 'box-shadow: 2px 2px 1px #888888'))}}
 
 {{ Form::label('artist', 'Artist:', array('style' => 'color: #8A4B08')) }}
-{{ Form::text('artistInput', '', array('placeholder' => 'Justin Bieber', 'style' => 'color: #8A4B08'))}}
+{{ Form::text('artistInput', '', array('placeholder' => 'Justin Bieber', 'style' => 'color: #8A4B08', 'style' => 'box-shadow: 2px 2px 1px #888888'))}}
 
 {{ Form::submit('Search Item', array('class' => 'btn btn-primary'))}}
 {{ Form::close() }}
@@ -50,7 +50,7 @@ if (!Auth::check())
 			Song: @{{ song.title }}
 		</p>
 		<label> Quantity: </label>	
-		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0'></input>
+		<input ng-model='quantity' name='quantity' id='quantity' placeholder='0' style='box-shadow: 2px 2px 1px #888888'></input>
 		<button class='btn btn-primary pull-right' ng-click='addItemToCart($index)'>Add to cart</button>
 		
 	</article>
