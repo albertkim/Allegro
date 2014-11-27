@@ -49,7 +49,9 @@ app.controller("itemsController", function($scope, $http, cartItems){
 		console.log(request);
 		$http.post("searchItem", request).success(function(response){
 			console.log(response);
+			$scope.albums = []; 
 			$scope.albums = response;
+			setMessage("Search successful");
 		});
 
 	}

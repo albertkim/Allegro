@@ -110,8 +110,24 @@ class CustomerController extends BaseController {
 
 						if (count($item) > 0)
 						{
-								$items = json_encode($item);
-								return $items;
+							foreach($items as $item){
+								$id = intval($item->upc);
+								$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
+								$songs = DB::table("hasSong")->where("upc", $id)->get();
+								// if exists
+								if(isset($leadSinger->name)){
+									$item->leadSinger = $leadSinger->name;
+								} else{
+									$item->leadSinger = "None";
+								}
+								if(isset($songs)){
+									$item->songs = $songs;
+								} else{
+									$item->songs = array();
+								}
+							}
+							$items = json_encode($item);
+							return $items;
 						}
 					}
 				}
@@ -128,6 +144,22 @@ class CustomerController extends BaseController {
 
 			if (count($items) > 0)
 			{
+				foreach($items as $item){
+					$id = intval($item->upc);
+					$leadSinger = DB::table("leadSinger")->where("upc", $id)->first();
+					$songs = DB::table("hasSong")->where("upc", $id)->get();
+					// if exists
+					if(isset($leadSinger->name)){
+						$item->leadSinger = $leadSinger->name;
+					} else{
+						$item->leadSinger = "None";
+					}
+					if(isset($songs)){
+						$item->songs = $songs;
+					} else{
+						$item->songs = array();
+					}
+				}
 				$items = json_encode($items);
 				return $items;
 			}
