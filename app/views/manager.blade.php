@@ -15,7 +15,7 @@
 
 		      <label>Select date:</label>
 		      <input ng-model="topItemsDate" placeholder="YYYY-MM-DD"></input>
-		      <label>Numer of elements:</label>
+		      <label>Number of elements:</label>
 		      <input ng-model="numTopItems" placeholder="5"></input>
 		      <button type="submit" class="btn btn-primary" ng-click="getTopItemsByDate()">Get items</button>
 
@@ -24,10 +24,14 @@
 				<table class="table">
 					<tr>
 						<th>Album title</th>
+						<th>Company</th>
+						<th>In stock</th>
 						<th>Times sold</th>
 					</tr>
 					<tr ng-repeat="item in topItems">
 						<td>@{{ item.title }}</td>
+						<td>@{{ item.company }}</td>
+						<td>@{{ item.stock }}</td>
 						<td>@{{ item.sum }}</td>
 					</tr>
 				</table>

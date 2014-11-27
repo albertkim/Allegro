@@ -72,7 +72,7 @@ class ManagerController extends BaseController {
 	}
 
 	public function getTopItems(){
-		$topItems = DB::select("SELECT I.TITLE AS title, P.UPC, SUM(QUANTITY) AS sum 
+		$topItems = DB::select("SELECT I.TITLE AS title, P.UPC, SUM(QUANTITY) AS sum, I.COMPANY AS company, I.STOCK AS stock
 			FROM PURCHASEITEM P, ITEM I 
 			WHERE P.UPC = I.UPC 
 			GROUP BY P.UPC 
@@ -88,7 +88,7 @@ class ManagerController extends BaseController {
 		$date = Input::get("date");
 		$number = Input::get("number");
 
-		$topItems = DB::select("SELECT i.title, i.company, i.stock, SUM(PI.QUANTITY) AS sum
+		$topItems = DB::select("SELECT i.UPC, i.category i.price, i.title, i.company, i.stock, SUM(PI.QUANTITY) AS sum
 						FROM Item i, PurchaseItem pi, Orders o
 						WHERE o.date = ? AND o.id = pi.receiptID AND pi.upc = i.upc
 						GROUP BY i.UPC
